@@ -1,0 +1,851 @@
+fileFormatVersion: 2
+guid: bb61aecfb1865874789ccd38773fdeb1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4773263254116138972
+    second: LoginDolfish_0
+  - first:
+      213: 56290754400615696
+    second: LoginDolfish_1
+  - first:
+      213: 1272601609366696707
+    second: LoginDolfish_2
+  - first:
+      213: 6447819216677609097
+    second: LoginDolfish_3
+  - first:
+      213: -4585687247636014089
+    second: LoginDolfish_4
+  - first:
+      213: -2002798552719607202
+    second: LoginDolfish_5
+  - first:
+      213: 7294094724050726338
+    second: LoginDolfish_6
+  - first:
+      213: -8237629846134223426
+    second: LoginDolfish_7
+  - first:
+      213: 319372089070918844
+    second: LoginDolfish_8
+  - first:
+      213: 7664233432946048559
+    second: LoginDolfish_9
+  - first:
+      213: -8778714776739803459
+    second: LoginDolfish_10
+  - first:
+      213: -589740144861688584
+    second: LoginDolfish_11
+  - first:
+      213: -3623943109995984875
+    second: LoginDolfish_12
+  - first:
+      213: 6826616628956142353
+    second: LoginDolfish_13
+  - first:
+      213: 116484580869406481
+    second: LoginDolfish_14
+  - first:
+      213: -351034580910192259
+    second: LoginDolfish_15
+  - first:
+      213: -8852901408566356112
+    second: LoginDolfish_16
+  - first:
+      213: 4490003014325662989
+    second: LoginDolfish_17
+  - first:
+      213: -422026949329250400
+    second: LoginDolfish_18
+  - first:
+      213: 30978555215333844
+    second: LoginDolfish_19
+  - first:
+      213: 2083520668962384487
+    second: LoginDolfish_20
+  - first:
+      213: -2695178266650317466
+    second: LoginDolfish_21
+  - first:
+      213: 4978124734159977539
+    second: LoginDolfish_22
+  - first:
+      213: -7305421513200819394
+    second: LoginDolfish_23
+  - first:
+      213: -5756197321597658330
+    second: LoginDolfish_24
+  - first:
+      213: -3393956902823785503
+    second: LoginDolfish_25
+  - first:
+      213: 3366701114692002337
+    second: LoginDolfish_26
+  - first:
+      213: 3650113065428356049
+    second: LoginDolfish_27
+  - first:
+      213: 7898528047550586007
+    second: LoginDolfish_28
+  - first:
+      213: -7776903666909846482
+    second: LoginDolfish_29
+  - first:
+      213: 814342008289146303
+    second: LoginDolfish_30
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 256
+    resizeAlgorithm: 0
+    textureFormat: 47
+    textureCompression: 1
+    compressionQuality: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 1
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: LoginDolfish_0
+      rect:
+        serializedVersion: 2
+        x: 690
+        y: 1051
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4208bf63c56f1cdb0800000000000000
+      internalID: -4773263254116138972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LoginDolfish_1
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 1052
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01dff24942cf7c000800000000000000
+      internalID: 56290754400615696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LoginDolfish_2
+      rect:
+        serializedVersion: 2
+        x: 710
+        y: 1064
+        width: 13
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30374e2db6039a110800000000000000
+      internalID: 1272601609366696707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LoginDolfish_3
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 1060
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98e91026a614b7950800000000000000
+      internalID: 6447819216677609097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LoginDolfish_4
+      rect:
+        serializedVersion: 2
+        x: 718
+        y: 1055
+        width: 10
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fbdd998ebd5c50c0800000000000000
+      internalID: -4585687247636014089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LoginDolfish_5
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 1056
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5a3b7cd351a434e0800000000000000
+      internalID: -2002798552719607202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LoginDolfish_6
+      rect:
+        serializedVersion: 2
+        x: 691
+        y: 1030
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cd28197184d93560800000000000000
+      internalID: 7294094724050726338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LoginDolfish_7
+      rect:
+        serializedVersion: 2
+        x: 696
+        y: 1049
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebd830ebc4f0ead80800000000000000
+      internalID: -8237629846134223426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LoginDolfish_8
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 1050
+        width: 7
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbc1f301933ae6400800000000000000
+      internalID: 319372089070918844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LoginDolfish_9
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 1048
+        width: 5
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2efb6e43b3dc5a60800000000000000
+      internalID: 7664233432946048559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LoginDolfish_10
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 1049
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbe83f31c6dbb2680800000000000000
+      internalID: -8778714776739803459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LoginDolfish_11
+      rect:
+        serializedVersion: 2
+        x: 689
+        y: 1041
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fc4bbb7672d0d7f0800000000000000
+      internalID: -589740144861688584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LoginDolfish_12
+      rect:
+        serializedVersion: 2
+        x: 716
+        y: 1038
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 518077221fa25bdc0800000000000000
+      internalID: -3623943109995984875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LoginDolfish_13
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 1044
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11b94b2b7a30dbe50800000000000000
+      internalID: 6826616628956142353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LoginDolfish_14
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 1040
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11ff780fb16dd9100800000000000000
+      internalID: 116484580869406481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LoginDolfish_15
+      rect:
+        serializedVersion: 2
+        x: 698
+        y: 1027
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7948f498efd02bf0800000000000000
+      internalID: -351034580910192259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LoginDolfish_16
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 1035
+        width: 11
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 077d8d6d21d242580800000000000000
+      internalID: -8852901408566356112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LoginDolfish_17
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 1026
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d057055d3f1bf4e30800000000000000
+      internalID: 4490003014325662989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LoginDolfish_18
+      rect:
+        serializedVersion: 2
+        x: 729
+        y: 1033
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a7969fb9b8a42af0800000000000000
+      internalID: -422026949329250400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LoginDolfish_19
+      rect:
+        serializedVersion: 2
+        x: 709
+        y: 1023
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d9c343f4de0e6000800000000000000
+      internalID: 30978555215333844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LoginDolfish_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 690
+        width: 730
+        height: 239
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76aefab62072aec10800000000000000
+      internalID: 2083520668962384487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LoginDolfish_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 363
+        width: 730
+        height: 239
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66d64f965adc89ad0800000000000000
+      internalID: -2695178266650317466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LoginDolfish_22
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 0
+        width: 356
+        height: 276
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34cf03b021ad51540800000000000000
+      internalID: 4978124734159977539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LoginDolfish_23
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 132
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e332b2be6dded9a90800000000000000
+      internalID: -7305421513200819394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LoginDolfish_24
+      rect:
+        serializedVersion: 2
+        x: 379
+        y: 0
+        width: 356
+        height: 276
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62bdd1d9801ed10b0800000000000000
+      internalID: -5756197321597658330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LoginDolfish_25
+      rect:
+        serializedVersion: 2
+        x: 731
+        y: 132
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1eb0438cd2e36e0d0800000000000000
+      internalID: -3393956902823785503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LoginDolfish_26
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 5
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 122e02683dce8be20800000000000000
+      internalID: 3366701114692002337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LoginDolfish_27
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 6
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1db8ede6e7ec7a230800000000000000
+      internalID: 3650113065428356049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LoginDolfish_28
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 5
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79c56ba39653d9d60800000000000000
+      internalID: 7898528047550586007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LoginDolfish_29
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 6
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e24e7699153e21490800000000000000
+      internalID: -7776903666909846482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

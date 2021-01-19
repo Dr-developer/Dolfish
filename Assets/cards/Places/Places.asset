@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b884e42f13a313f40850e28d678369fb, type: 3}
+  m_Name: Places
+  m_EditorClassIdentifier: 
+  Name: Places
+  Logo: {fileID: 21300000, guid: 0aea83aed962f4144895e781d220dcc7, type: 3}
+  Logotext: {fileID: 0}
+  cardImgs:
+  - {fileID: 21300000, guid: 5a552e9b48775784b9216ce06a100834, type: 3}
+  - {fileID: 21300000, guid: 21ec03d7fb13f6a4b8ec3d76e5d4e567, type: 3}
+  - {fileID: 21300000, guid: 07aed7b901ad6e84ba1708afbb5a859d, type: 3}
+  - {fileID: 21300000, guid: a37b469c5cc41bc46a5f474e211e2c05, type: 3}
+  - {fileID: 21300000, guid: 02b2e49285d45c846a0f1342351de70e, type: 3}
+  cardVoice:
+  - {fileID: 8300000, guid: ca502c400f5c14a418bc307af1541722, type: 3}
+  - {fileID: 8300000, guid: 1fe682b24f26e434c800f4dfb018df2c, type: 3}
+  - {fileID: 8300000, guid: 6562d0446e67e4444b01806ff440bde9, type: 3}
+  - {fileID: 8300000, guid: 30e71924f1d071c40bcc195b2b02753f, type: 3}
+  - {fileID: 8300000, guid: adf4122a6aee8314f95f2794f8bdfd2f, type: 3}

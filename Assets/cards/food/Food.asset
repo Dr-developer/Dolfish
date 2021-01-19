@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b884e42f13a313f40850e28d678369fb, type: 3}
+  m_Name: Food
+  m_EditorClassIdentifier: 
+  Name: Food
+  Logo: {fileID: 21300000, guid: db1f28d107867ae45af2fce7c9ee88c8, type: 3}
+  Logotext: {fileID: 0}
+  cardImgs:
+  - {fileID: 21300000, guid: 30053583befe6fd45abe89d3c4cad004, type: 3}
+  - {fileID: 21300000, guid: fb276b0d13d014c418b7f0b1cf73e4e0, type: 3}
+  - {fileID: 21300000, guid: 8e4f97a5b1e34124eaa75ec427b3804c, type: 3}
+  - {fileID: 21300000, guid: 86aa1a2a6c2a32449847a2cf04e557e5, type: 3}
+  - {fileID: 21300000, guid: 8c42e4a66e660c84f9ca5d72d7b98f90, type: 3}
+  cardVoice:
+  - {fileID: 8300000, guid: a33089062db4f2e43a42be2c7e5fca5b, type: 3}
+  - {fileID: 8300000, guid: 01ea1287977f89a4290e970575423d86, type: 3}
+  - {fileID: 8300000, guid: 0520f8f7b6e82cd439229fe4c680b9d3, type: 3}
+  - {fileID: 8300000, guid: 10c6821b84e414f47bf2a918295e11ee, type: 3}
+  - {fileID: 8300000, guid: 9e3c95ed1ca9c4542a4232397438a8c4, type: 3}

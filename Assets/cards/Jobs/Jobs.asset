@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b884e42f13a313f40850e28d678369fb, type: 3}
+  m_Name: Jobs
+  m_EditorClassIdentifier: 
+  Name: Jobs
+  Logo: {fileID: 21300000, guid: e0ecf84a8b0be2a4cbe3d76ddf7d55f6, type: 3}
+  Logotext: {fileID: 0}
+  cardImgs:
+  - {fileID: 21300000, guid: e01cb9cfbf4c47743b165943763d6fe5, type: 3}
+  - {fileID: 21300000, guid: f197702471261354b93bb8fac6f97b9e, type: 3}
+  - {fileID: 21300000, guid: b7dad7cf76edc034eae38c139d78feab, type: 3}
+  - {fileID: 21300000, guid: dd1f76cae443ce047a67d15f29808586, type: 3}
+  - {fileID: 21300000, guid: d2983b0bac4deec49878e2f9cea6acc1, type: 3}
+  cardVoice:
+  - {fileID: 8300000, guid: 03bd45c99fb84fd4b86be66835fa8c51, type: 3}
+  - {fileID: 8300000, guid: 11cf8186e9d0f7d42b8858c55e63759a, type: 3}
+  - {fileID: 8300000, guid: 9cb2d8f6073fc394bbb4be379751ecc1, type: 3}
+  - {fileID: 8300000, guid: 1f9e5915aeea69a4f810fe5006419062, type: 3}
+  - {fileID: 8300000, guid: 89a736cfff298d942b3cecc3c5837f88, type: 3}

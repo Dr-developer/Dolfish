@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b884e42f13a313f40850e28d678369fb, type: 3}
+  m_Name: ActionCards
+  m_EditorClassIdentifier: 
+  Name: ActionCards
+  Logo: {fileID: 21300000, guid: 7941831305b081042969ad5dfa833d89, type: 3}
+  Logotext: {fileID: 21300000, guid: 7941831305b081042969ad5dfa833d89, type: 3}
+  cardImgs:
+  - {fileID: 21300000, guid: a6b7258e46a38854ca089015d8c2df0d, type: 3}
+  - {fileID: 21300000, guid: 48da0a525c763644ca4d9e06dce8aac3, type: 3}
+  cardVoice:
+  - {fileID: 8300000, guid: 69ab301badebfc648b66e9344a176cb9, type: 3}
+  - {fileID: 8300000, guid: 11c3ced7ac4d9bc43848a9f2d3037a9d, type: 3}
