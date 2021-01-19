@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using Random = UnityEngine.Random;
 public class RecivedPanel : MonoBehaviour
 {  
-    
+    //TODO:Button Colors Button Fixing 
     //Public Variables
     public static RecivedPanel ins; //Create a Instans from this class
     public string cardName;
@@ -68,7 +68,7 @@ public class RecivedPanel : MonoBehaviour
             case "Food":
                 cardCategoryImages[0].color=Color.green;
                 break;
-            case "Cloth":
+            case "Clothe":
                 cardCategoryImages[1].color=Color.green;
                  break;
             case "Job" :

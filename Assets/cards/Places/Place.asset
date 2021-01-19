@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b884e42f13a313f40850e28d678369fb, type: 3}
-  m_Name: Places
+  m_Name: Place
   m_EditorClassIdentifier: 
-  Name: Places
+  Name: Place
   Logo: {fileID: 21300000, guid: 0aea83aed962f4144895e781d220dcc7, type: 3}
   Logotext: {fileID: 0}
   cardImgs:

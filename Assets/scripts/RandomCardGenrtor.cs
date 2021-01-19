@@ -6,7 +6,8 @@ using UnityEngine.UI;
 using Random = UnityEngine.Random;
 public class RandomCardGenrtor : MonoBehaviour
 {
-    public Cat_so[] a;
+    //TODO:find Solution for removing the card and It's error 
+    //TODO:Color of Button Fixing  
     private const int NumberOfPlaceText=9;
     public static RandomCardGenrtor Ins;
     public string receivedCardName;//Name Of Card That Ai Received From Player
@@ -21,7 +22,7 @@ public class RandomCardGenrtor : MonoBehaviour
     private List<string> jobs = new List<string>(){"cashier","customer","janitor","porter","seller"};//name of job cards
     private List<string> money =new List<string>() {"cash", "cheque", "coin", "credit card", "money"};//name of money cards
     private List<string> places =new List<string>() {"changing room", "elevator", "escalator", "restroom","store"};//name of place cards
-    private List<string> cats = new List<string>(){"Cloth", "Food", "Job", "Place", "Money"};//name of Game Used Cats 
+    private List<string> cats = new List<string>(){"Clothe", "Food", "Job", "Place", "Money"};//name of Game Used Cats 
     public GameObject cardReceiverPanel;
    
     public void Awake()
@@ -69,10 +70,15 @@ public class RandomCardGenrtor : MonoBehaviour
         {   
             var chosenCategory= Random.Range(0, 5);
             receivedCardCat = cats[chosenCategory];
-            var chosenCategoryIndex = Random.Range(0, 5);
+         
+            Debug.Log("chosen category  index : " + chosenCategory);
             if (chosenCategory == 0)
-            {    
-             //   StartCoroutine(CreateWaite());
+            {
+                if (cloth == null)
+                {
+                    PlayerTurns();
+                }
+                var chosenCategoryIndex = Random.Range(0, cloth.Capacity);
                 receivedCardName = cloth[chosenCategoryIndex];
                 cloth.RemoveAt(chosenCategoryIndex);
                 PutItInFrontOfPlayer();
@@ -81,7 +87,11 @@ public class RandomCardGenrtor : MonoBehaviour
             }
             else if (chosenCategory == 1)
             {
-                //StartCoroutine(CreateWaite());
+                if (food==null)
+                {
+                    PlayerTurns();
+                }
+                var chosenCategoryIndex = Random.Range(0, food.Capacity);
                 receivedCardName = food[chosenCategoryIndex];
                 food.RemoveAt(chosenCategoryIndex);
                 PutItInFrontOfPlayer();
@@ -89,7 +99,11 @@ public class RandomCardGenrtor : MonoBehaviour
             }
             else if (chosenCategory == 2)
             {
-              //  StartCoroutine(CreateWaite());
+                if (jobs == null)
+                {
+                    PlayerTurns();
+                }
+                var chosenCategoryIndex = Random.Range(0, jobs.Capacity);
                 receivedCardName = jobs[chosenCategoryIndex];
                 jobs.RemoveAt(chosenCategoryIndex);
                 PutItInFrontOfPlayer();
@@ -97,6 +111,11 @@ public class RandomCardGenrtor : MonoBehaviour
             }
             else if (chosenCategory == 3)
             {
+                if (places == null)
+                {
+                    PlayerTurns();
+                }
+                var chosenCategoryIndex = Random.Range(0, places.Capacity);
                 receivedCardName = places[chosenCategoryIndex];
                 places.RemoveAt(chosenCategoryIndex);
                 PutItInFrontOfPlayer();
@@ -104,6 +123,11 @@ public class RandomCardGenrtor : MonoBehaviour
             }
             else if (chosenCategory == 4)
             {
+                if (money == null)
+                {
+                    PlayerTurns();
+                }
+                var chosenCategoryIndex = Random.Range(0, money.Capacity);
                 receivedCardName = money[chosenCategoryIndex];
                 money.RemoveAt(chosenCategoryIndex);
                 PutItInFrontOfPlayer();
@@ -152,7 +176,7 @@ public class RandomCardGenrtor : MonoBehaviour
         {
             switch (receivedCardCat)
             {
-                case "Cloth":
+                case "Clothe":
                     PutTheCardsInEmptyPlaces(clothCardText, receivedCardName);
                     break;
                 case "Food":
@@ -174,10 +198,12 @@ public class RandomCardGenrtor : MonoBehaviour
         }
         else//Pas The Card To OtherPlayer
         {
+            //Note : may be it happened to work 
             Debug.Log("PlayerDontAccept This Card ");
-            RecivedPanel.ins.cardName = receivedCardName;
-            RecivedPanel.ins.cardCategory = receivedCardCat;
-            RecivedPanel.ins.PutItInFrontOfYou();
+           // RecivedPanel.ins.cardName = receivedCardName;
+           // RecivedPanel.ins.cardCategory = receivedCardCat;
+           // RecivedPanel.ins.PutItInFrontOfYou();
+           PlayerTurns();
         }
     }
     private void PutTheCardsInEmptyPlaces(Text[] arry, string text)

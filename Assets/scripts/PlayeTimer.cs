@@ -37,10 +37,10 @@ public class PlayeTimer : MonoBehaviour
         }
         else if(timeLeft<0 && stopTheTimer==false&&PutCardInPlace.ins.passPanel.activeSelf==false)
         {
-            GameManger.ins.PlayerTurner();
-            RandomCardGenrtor.Ins.PlayerTurns();
-            PutCardInPlace.ins.HideThePanel();
-            stopTheTimer = true;
+            //GameManger.ins.PlayerTurner();
+            //RandomCardGenrtor.Ins.PlayerTurns();
+            //PutCardInPlace.ins.HideThePanel();
+            //stopTheTimer = true;
         }
         else if (timeLeft<0 && stopTheTimer==false&& PutCardInPlace.ins.passPanel.activeSelf)
         {

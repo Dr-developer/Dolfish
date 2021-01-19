@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class PutCardInPlace : MonoBehaviour
 {
+    //TODO:When PlayerTimer Ends Card Go in Front Of Player
+    
     public static PutCardInPlace ins;
     public List<GameObject> cards;
     public GameObject selectedcard;
@@ -69,7 +71,7 @@ public class PutCardInPlace : MonoBehaviour
                 foodCards.Add(cards[i]);
                 foodCardNames[i] = cards[i].name;
             }
-            else if (cards[i].GetComponent<category>().cat.Name == "Jobs")
+            else if (cards[i].GetComponent<category>().cat.Name == "Job")
             {
                 jobCards.Add(cards[i]);
              jobCardName[i] = cards[i].name;
@@ -81,7 +83,7 @@ public class PutCardInPlace : MonoBehaviour
                 moneyCardName[i] = cards[i].name;
 
             }
-            else if (cards[i].GetComponent<category>().cat.Name == "Places")
+            else if (cards[i].GetComponent<category>().cat.Name == "Place")
             {
                 placeCards.Add(cards[i]);   
                 placeCardNames[i] = cards[i].name;
@@ -99,7 +101,6 @@ public class PutCardInPlace : MonoBehaviour
     public void OnActionButtonClick()//when you click on action button
     {            makeCardtransparent();
         passThecard.Pass.cat = "ActionCards";
-        Debug.Log("ss");
         for (int i = 0; i < actionCard.Count; i++)
         {
         
@@ -156,7 +157,7 @@ public class PutCardInPlace : MonoBehaviour
     }
     public void OnClothCardButtonClick()
     {            makeCardtransparent();
-        cat = "Cloth";
+        cat = "Clothe";
 
         for (int i = 0; i < clothCards.Count; i++)
         {    
@@ -194,7 +195,7 @@ public class PutCardInPlace : MonoBehaviour
                 }
                 break;
             
-            case "Cloth":
+            case "Clothe":
                 for (int i = 0; i < clothCards.Count; i++)
                 {
                     if (clothCards[i].GetComponent<SpriteRenderer>().sprite.name==cardImage.sprite.name)
@@ -302,7 +303,7 @@ public class PutCardInPlace : MonoBehaviour
         {
             cardCategoryButtons[3].Select();    
         }
-        else if (cat == "cloth")
+        else if (cat == "Clothe")
         {
             cardCategoryButtons[4].Select();
         }
@@ -332,7 +333,7 @@ public class PutCardInPlace : MonoBehaviour
         {
             RandomCardGenrtor.Ins.PutItInFrontOfPlayer(false,true);
         }
-        GameManger.ins.PlayerTurner();
+        //GameManger.ins.PlayerTurner();
     }
 
  
@@ -344,7 +345,7 @@ public class PutCardInPlace : MonoBehaviour
                 putTheCardsInEmpetyPlacese(actionCardText,revicidCardName);
                 break;
             
-            case "Cloth":
+            case "Clothe":
                 putTheCardsInEmpetyPlacese(clothCardText,revicidCardName);
 
                 break;

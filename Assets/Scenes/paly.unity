@@ -7125,21 +7125,21 @@ MonoBehaviour:
   - Food
   - Food
   - Food
-  - Jobs
-  - Jobs
-  - Jobs
-  - Jobs
-  - Jobs
+  - Job
+  - Job
+  - Job
+  - Job
+  - Job
   - Money
   - Money
   - Money
   - Money
   - Money
-  - Places
-  - Places
-  - Places
-  - Places
-  - Places
+  - Place
+  - Place
+  - Place
+  - Place
+  - Place
   foodCardText:
   - {fileID: 453611764}
   - {fileID: 1407488283}
@@ -17686,14 +17686,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65108c5fda4c6014c8c01eb38ffc4a44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  a:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   receivedCardName: 
   receivedCardCat: 
   foodCardText:
