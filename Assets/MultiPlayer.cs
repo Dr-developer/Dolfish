@@ -6,14 +6,19 @@ using FiroozehGameService.Models.Enums.GSLive;
 using FiroozehGameService.Models.GSLive;
 using FiroozehGameService.Models.GSLive.Command;
 using FiroozehGameService.Models.GSLive.TB;
+using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MultiPlayer : MonoBehaviour
 {
     public Text Status;
-
     private int _whoTurn;
+
+    private Member _me, _currentTurn, _whoIsX;
+    private Member []_opponent=new Member[3];
+
+    private List<Member> _members;
     // Start is called before the first frame update
     async void  Start()
     {
@@ -63,12 +68,10 @@ public class MultiPlayer : MonoBehaviour
 
     private void OnCurrentTurnMember(object sender, Member e)
     {
-        throw new NotImplementedException();
     }
 
     private void OnRoomMembersDetailReceived(object sender, List<Member> e)
     {
-        throw new NotImplementedException();
     }
 
     private void OnLeaveRoom(object sender, Member e)
@@ -93,6 +96,7 @@ public class MultiPlayer : MonoBehaviour
 
     private void OnJoinRoom(object sender, JoinEvent e)
     {
+       Debug.Log(e.JoinData.JoinedMemberOrder);
     }
 
     private void Reconnected(object sender, ReconnectStatus e)

@@ -1,14 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using FiroozehGameService.Core;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using UnityEngine;
 
-namespace Handler
+namespace Handlers
 {
-   public class GsLiveHandler 
+   public  static  class GsLiveHandler 
    {
       public static async Task TakeTurn(int whoIsTurn, string category, string name, Sprite cardImag,
          string sendCategory,string PlayeId)
