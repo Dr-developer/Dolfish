@@ -76,6 +76,7 @@ public class RandomCardGenrtor : MonoBehaviour
             {
                 if (cloth == null)
                 {
+                    Debug.Log("Clothe is Null");
                     PlayerTurns();
                 }
                 var chosenCategoryIndex = Random.Range(0, cloth.Capacity);
@@ -89,6 +90,7 @@ public class RandomCardGenrtor : MonoBehaviour
             {
                 if (food==null)
                 {
+                    Debug.Log("Food is Null");
                     PlayerTurns();
                 }
                 var chosenCategoryIndex = Random.Range(0, food.Capacity);
@@ -101,6 +103,7 @@ public class RandomCardGenrtor : MonoBehaviour
             {
                 if (jobs == null)
                 {
+                    Debug.Log("Job is Null");
                     PlayerTurns();
                 }
                 var chosenCategoryIndex = Random.Range(0, jobs.Capacity);
@@ -113,6 +116,7 @@ public class RandomCardGenrtor : MonoBehaviour
             {
                 if (places == null)
                 {
+                    Debug.Log("Places IS null");
                     PlayerTurns();
                 }
                 var chosenCategoryIndex = Random.Range(0, places.Capacity);

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
     <e p="C:\Users\alish\.Rider2019.2\system\extResources" t="IncludeRecursive" />
@@ -165,6 +165,7 @@
         <e p="Editor" t="Include">
           <e p="CreateAssetBundles.cs" t="Include" />
         </e>
+        <e p="GsLiveHandler.cs" t="Include" />
         <e p="MultiPlayer.cs" t="Include" />
         <e p="MultiPlayerData.cs" t="Include" />
         <e p="PersonalPanel.cs" t="Include" />

@@ -12,6 +12,8 @@ using UnityEngine.UI;
 public class MultiPlayer : MonoBehaviour
 {
     public Text Status;
+
+    private int _whoTurn;
     // Start is called before the first frame update
     async void  Start()
     {
@@ -46,6 +48,18 @@ public class MultiPlayer : MonoBehaviour
         TurnBasedEventHandlers.RoomMembersDetailReceived += OnRoomMembersDetailReceived;
         TurnBasedEventHandlers.CurrentTurnMemberReceived += OnCurrentTurnMember;
     }
+
+    private void GameInit()
+    {
+        _whoTurn = 0;
+        
+    }
+
+    public void ToWho()
+    {
+        //Select The PLayer That you Want To send The Card To Him 
+    }
+    
 
     private void OnCurrentTurnMember(object sender, Member e)
     {

@@ -14,6 +14,7 @@ public class MultiPlayerData
   [JsonProperty("3")] public string cardName;
   [JsonProperty("4")] public Text[] changesTexts;
   [JsonProperty("5")] public string changedCateGory;
-  
+  [JsonProperty("6")] public Sprite cardImage;
+
 
 }
