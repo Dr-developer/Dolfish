@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using FiroozehGameService.Core;
 using FiroozehGameService.Handlers;
 using FiroozehGameService.Models.Enums.GSLive;
 using FiroozehGameService.Models.GSLive;
@@ -76,6 +77,7 @@ public class MultiPlayer : MonoBehaviour
 
     private void OnLeaveRoom(object sender, Member e)
     {
+        //Show Him Game Overd 
     }
 
     private void OnTakeTurn(object sender, Turn e)
@@ -84,14 +86,17 @@ public class MultiPlayer : MonoBehaviour
 
     private void OnChooseNext(object sender, Member e)
     {
+        
     }
 
     private void AutoMatchUpdated(object sender, AutoMatchEvent e)
     {
+        
     }
 
     private void OnCompleted(object sender, Complete e)
     {
+        
     }
 
     private void OnJoinRoom(object sender, JoinEvent e)
@@ -101,10 +106,12 @@ public class MultiPlayer : MonoBehaviour
 
     private void Reconnected(object sender, ReconnectStatus e)
     {
+        
     }
 
     private void OnError(object sender, ErrorEvent e)
     {
+        
     }
 
     private void OnSuccessfullyLogined(object sender, EventArgs e)

@@ -79,12 +79,16 @@ public class RandomCardGenrtor : MonoBehaviour
                     Debug.Log("Clothe is Null");
                     PlayerTurns();
                 }
-                var chosenCategoryIndex = Random.Range(0, cloth.Capacity);
+                var chosenCategoryIndex = Random.Range(0, cloth.Capacity-1);
+                Debug.Log(chosenCategoryIndex);
+                Debug.Log(cloth.Capacity);
+                Debug.Log(cloth[chosenCategoryIndex]);
                 receivedCardName = cloth[chosenCategoryIndex];
-                cloth.RemoveAt(chosenCategoryIndex);
+                Debug.Log(receivedCardName);
                 PutItInFrontOfPlayer();
                 GameManger.ins.PlayerTurner();
-                
+                cloth.RemoveAt(chosenCategoryIndex);
+
             }
             else if (chosenCategory == 1)
             {
@@ -93,11 +97,16 @@ public class RandomCardGenrtor : MonoBehaviour
                     Debug.Log("Food is Null");
                     PlayerTurns();
                 }
-                var chosenCategoryIndex = Random.Range(0, food.Capacity);
+                var chosenCategoryIndex = Random.Range(0, food.Count); 
+                Debug.Log(chosenCategoryIndex);
+                Debug.Log(food.Capacity);
+                Debug.Log(food[chosenCategoryIndex]);
                 receivedCardName = food[chosenCategoryIndex];
-                food.RemoveAt(chosenCategoryIndex);
+             
                 PutItInFrontOfPlayer();
                 GameManger.ins.PlayerTurner();
+                food.RemoveAt(chosenCategoryIndex);
+
             }
             else if (chosenCategory == 2)
             {
@@ -106,11 +115,15 @@ public class RandomCardGenrtor : MonoBehaviour
                     Debug.Log("Job is Null");
                     PlayerTurns();
                 }
-                var chosenCategoryIndex = Random.Range(0, jobs.Capacity);
+                var chosenCategoryIndex = Random.Range(0, jobs.Count);   Debug.Log(chosenCategoryIndex);
+                Debug.Log(jobs.Capacity);
+                Debug.Log(jobs[chosenCategoryIndex]);
                 receivedCardName = jobs[chosenCategoryIndex];
-                jobs.RemoveAt(chosenCategoryIndex);
+             
                 PutItInFrontOfPlayer();
                 GameManger.ins.PlayerTurner();
+                jobs.RemoveAt(chosenCategoryIndex);
+
             }
             else if (chosenCategory == 3)
             {
@@ -119,11 +132,16 @@ public class RandomCardGenrtor : MonoBehaviour
                     Debug.Log("Places IS null");
                     PlayerTurns();
                 }
-                var chosenCategoryIndex = Random.Range(0, places.Capacity);
+                var chosenCategoryIndex = Random.Range(0, places.Count);
+                Debug.Log(chosenCategoryIndex);
+                Debug.Log(places.Capacity);
+                Debug.Log(places[chosenCategoryIndex]);
                 receivedCardName = places[chosenCategoryIndex];
-                places.RemoveAt(chosenCategoryIndex);
+            
                 PutItInFrontOfPlayer();
                 GameManger.ins.PlayerTurner();
+                places.RemoveAt(chosenCategoryIndex);
+
             }
             else if (chosenCategory == 4)
             {
@@ -131,11 +149,16 @@ public class RandomCardGenrtor : MonoBehaviour
                 {
                     PlayerTurns();
                 }
-                var chosenCategoryIndex = Random.Range(0, money.Capacity);
+                Debug.Log(receivedCardName);
+                Debug.Log(money.Capacity);
+                var chosenCategoryIndex = Random.Range(0, money.Count);
+            
                 receivedCardName = money[chosenCategoryIndex];
-                money.RemoveAt(chosenCategoryIndex);
+                
                 PutItInFrontOfPlayer();
                 GameManger.ins.PlayerTurner();
+                money.RemoveAt(chosenCategoryIndex);
+
             }
             else
             {
