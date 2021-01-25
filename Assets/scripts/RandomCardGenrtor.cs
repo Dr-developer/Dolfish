@@ -79,9 +79,9 @@ public class RandomCardGenrtor : MonoBehaviour
                     Debug.Log("Clothe is Null");
                     PlayerTurns();
                 }
-                var chosenCategoryIndex = Random.Range(0, cloth.Capacity-1);
+                var chosenCategoryIndex = Random.Range(0, cloth.Count);
                 Debug.Log(chosenCategoryIndex);
-                Debug.Log(cloth.Capacity);
+                Debug.Log(cloth.Count);
                 Debug.Log(cloth[chosenCategoryIndex]);
                 receivedCardName = cloth[chosenCategoryIndex];
                 Debug.Log(receivedCardName);
@@ -99,7 +99,7 @@ public class RandomCardGenrtor : MonoBehaviour
                 }
                 var chosenCategoryIndex = Random.Range(0, food.Count); 
                 Debug.Log(chosenCategoryIndex);
-                Debug.Log(food.Capacity);
+                Debug.Log(food.Count);
                 Debug.Log(food[chosenCategoryIndex]);
                 receivedCardName = food[chosenCategoryIndex];
              
@@ -116,7 +116,7 @@ public class RandomCardGenrtor : MonoBehaviour
                     PlayerTurns();
                 }
                 var chosenCategoryIndex = Random.Range(0, jobs.Count);   Debug.Log(chosenCategoryIndex);
-                Debug.Log(jobs.Capacity);
+                Debug.Log(jobs.Count);
                 Debug.Log(jobs[chosenCategoryIndex]);
                 receivedCardName = jobs[chosenCategoryIndex];
              
@@ -134,7 +134,7 @@ public class RandomCardGenrtor : MonoBehaviour
                 }
                 var chosenCategoryIndex = Random.Range(0, places.Count);
                 Debug.Log(chosenCategoryIndex);
-                Debug.Log(places.Capacity);
+                Debug.Log(places.Count);
                 Debug.Log(places[chosenCategoryIndex]);
                 receivedCardName = places[chosenCategoryIndex];
             
@@ -150,9 +150,10 @@ public class RandomCardGenrtor : MonoBehaviour
                     PlayerTurns();
                 }
                 Debug.Log(receivedCardName);
-                Debug.Log(money.Capacity);
+                Debug.Log(money.Count);
                 var chosenCategoryIndex = Random.Range(0, money.Count);
-            
+                Debug.Log(chosenCategory);
+                Debug.Log(money.Count);
                 receivedCardName = money[chosenCategoryIndex];
                 
                 PutItInFrontOfPlayer();
