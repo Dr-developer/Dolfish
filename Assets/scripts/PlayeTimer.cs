@@ -13,7 +13,7 @@ public class PlayeTimer : MonoBehaviour
     public float reminedTime;
     public float timeLeft;
     public bool stopTheTimer;
-
+    public bool fixTheTimer;
     private void Awake()
     {
         ins = this;
@@ -22,6 +22,7 @@ public class PlayeTimer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        fixTheTimer = false;
         timeLeft = maxTime;
         stopTheTimer = false;
         Timebar.fillAmount = 1;

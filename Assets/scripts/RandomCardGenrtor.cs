@@ -133,9 +133,6 @@ public class RandomCardGenrtor : MonoBehaviour
                     PlayerTurns();
                 }
                 var chosenCategoryIndex = Random.Range(0, places.Count);
-                Debug.Log(chosenCategoryIndex);
-                Debug.Log(places.Count);
-                Debug.Log(places[chosenCategoryIndex]);
                 receivedCardName = places[chosenCategoryIndex];
             
                 PutItInFrontOfPlayer();
@@ -149,13 +146,8 @@ public class RandomCardGenrtor : MonoBehaviour
                 {
                     PlayerTurns();
                 }
-                Debug.Log(receivedCardName);
-                Debug.Log(money.Count);
                 var chosenCategoryIndex = Random.Range(0, money.Count);
-                Debug.Log(chosenCategory);
-                Debug.Log(money.Count);
                 receivedCardName = money[chosenCategoryIndex];
-                
                 PutItInFrontOfPlayer();
                 GameManger.ins.PlayerTurner();
                 money.RemoveAt(chosenCategoryIndex);

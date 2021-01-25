@@ -6,12 +6,14 @@ using FiroozehGameService.Handlers;
 using FiroozehGameService.Models.Enums.GSLive;
 using FiroozehGameService.Models.GSLive.Command;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class AutoMatchMaking  : MonoBehaviour
 {
     // Start is called before the first frame update
     public Text joinedPlayersName;
+    public Text stute;
     void Start()
     {
         if (GameService.IsAuthenticated())//Check That Player IS connect To Internet and Game Service 
@@ -52,10 +54,25 @@ public class AutoMatchMaking  : MonoBehaviour
                 joinedPlayersName.text = VARIABLE.Name+"\n";
             }
         }
+        else
+        {
+            //TODO :GO TO Sort Menu;
+        }
     }
     public async void OnPlayOnline()
     {
-      await  GameService.GSLive.TurnBased.AutoMatch(new GSLiveOption.AutoMatchOption(
-            "player", 4, 4, false));
+        if (GameService.GSLive.IsCommandAvailable())
+        {
+            await GameService.GSLive.TurnBased.AutoMatch(new GSLiveOption.AutoMatchOption(
+                "player", 2, 2, false));
+            stute.text = "Please Waite We Are Looking For A Player ";
+
+        }
+        else
+        {
+            stute.text = "Game Service Not Connected ";
+            SceneManager.LoadScene(0);
+        }
+        
     }
 }
