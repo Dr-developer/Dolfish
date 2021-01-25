@@ -74,7 +74,7 @@ public class RandomCardGenrtor : MonoBehaviour
             Debug.Log("chosen category  index : " + chosenCategory);
             if (chosenCategory == 0)
             {
-                if (cloth == null)
+                if (cloth.Count ==0)
                 {
                     Debug.Log("Clothe is Null");
                     PlayerTurns();
@@ -92,7 +92,7 @@ public class RandomCardGenrtor : MonoBehaviour
             }
             else if (chosenCategory == 1)
             {
-                if (food==null)
+                if (food.Count==0)
                 {
                     Debug.Log("Food is Null");
                     PlayerTurns();
@@ -110,7 +110,7 @@ public class RandomCardGenrtor : MonoBehaviour
             }
             else if (chosenCategory == 2)
             {
-                if (jobs == null)
+                if (jobs.Count == 0)
                 {
                     Debug.Log("Job is Null");
                     PlayerTurns();
@@ -127,7 +127,7 @@ public class RandomCardGenrtor : MonoBehaviour
             }
             else if (chosenCategory == 3)
             {
-                if (places == null)
+                if (places.Count == 0)
                 {
                     Debug.Log("Places IS null");
                     PlayerTurns();
@@ -145,7 +145,7 @@ public class RandomCardGenrtor : MonoBehaviour
             }
             else if (chosenCategory == 4)
             {
-                if (money == null)
+                if (money.Count == 0)
                 {
                     PlayerTurns();
                 }
