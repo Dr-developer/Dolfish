@@ -57,16 +57,19 @@ public class RandomCardGenrtor : MonoBehaviour
         }
     }
     public void PlayerTurns()
-    {
-        const int sendItToPlayer = 1;
-        var random = Random.Range(0,4);
-        
-        if (GameManger.ins.playerTurn == 0)
+    {//TODO :This IS where The Bugs Happends
+        const int sendItToAi = 1;
+        const int sendItToPlayer = 0;
+        const int humanPlayerTurn = 0;
+        var random = Random.Range(0, 2);
+        Debug.Log(random);
+        if (GameManger.ins.playerTurn == humanPlayerTurn)
         {
+            Debug.Log("Your Turn");
             random = 3;
-            
+
         }
-        if (random != sendItToPlayer)
+        if (random == sendItToAi)
         {   
             var chosenCategory= Random.Range(0, 5);
             receivedCardCat = cats[chosenCategory];

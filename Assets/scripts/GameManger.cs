@@ -65,7 +65,7 @@ public class GameManger : MonoBehaviour
     public void PlayerTurner()
     {
         playerTurn++;
-       //     Debug.Log("Player"+playerTurn+"Is Playing");
+           Debug.Log("Player"+playerTurn+"Is Playing");
         if (playerTurn == 1&&otherPlayersGameOverPanel[0].activeSelf==false)
         {   
             playersHollows[0].gameObject.SetActive(true);
