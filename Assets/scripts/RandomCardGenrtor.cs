@@ -62,12 +62,12 @@ public class RandomCardGenrtor : MonoBehaviour
         const int sendItToPlayer = 0;
         const int humanPlayerTurn = 0;
         var random = Random.Range(0, 2);
-        Debug.Log(random);
         if (GameManger.ins.playerTurn == humanPlayerTurn)
         {
             Debug.Log("Your Turn");
-            random = 3;
-
+            
+            PutCardInPlace.ins.RemoveThePanel();//How To go To other player 
+            return; 
         }
         if (random == sendItToAi)
         {   
@@ -223,9 +223,9 @@ public class RandomCardGenrtor : MonoBehaviour
         {
             //Note : may be it happened to work 
             Debug.Log("PlayerDontAccept This Card ");
-           // RecivedPanel.ins.cardName = receivedCardName;
-           // RecivedPanel.ins.cardCategory = receivedCardCat;
-           // RecivedPanel.ins.PutItInFrontOfYou();
+             //RecivedPanel.ins.cardName = receivedCardName;
+            // RecivedPanel.ins.cardCategory = receivedCardCat;
+            // RecivedPanel.ins.PutItInFrontOfYou();
            PlayerTurns();
         }
     }

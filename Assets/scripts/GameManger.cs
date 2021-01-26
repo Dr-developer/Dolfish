@@ -97,7 +97,7 @@ public class GameManger : MonoBehaviour
             playersHollows[2].gameObject.SetActive(false);
             playerTurn = 0;
             Debug.Log("Now The Panel will be Removed ");
-            PutCardInPlace.ins.removeThePanel();//How To go To other player 
+            //PutCardInPlace.ins.removeThePanel();//How To go To other player 
         }
         else
         {

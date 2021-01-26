@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class PutCardInPlace : MonoBehaviour
 {
     //TODO:When PlayerTimer Ends Card Go in Front Of Player
-    
     public static PutCardInPlace ins;
     public List<GameObject> cards;
     public GameObject selectedcard;
@@ -390,7 +389,7 @@ public class PutCardInPlace : MonoBehaviour
         
     }
    
-    public void removeThePanel()
+    public void RemoveThePanel()
     {
         playerTimer.SetActive(true);
         PlayeTimer.ins.timeLeft = PlayeTimer.ins.maxTime;

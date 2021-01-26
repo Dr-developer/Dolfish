@@ -201,7 +201,7 @@ public class RecivedPanel : MonoBehaviour
             }
         }
         
-    }//*
+    }
     private static void  GameOverChecker(Text[] arr) 
     {
         int counter = 0;
@@ -217,7 +217,7 @@ public class RecivedPanel : MonoBehaviour
             }
            
         }
-    }//*
+    }
     private IEnumerator Disable()
     {
         yield return  new WaitForSeconds(1.2f);
@@ -228,6 +228,11 @@ public class RecivedPanel : MonoBehaviour
             PutCardInPlace.ins.playerTimer.SetActive(false);
             PlayeTimer.ins.timeLeft = PlayeTimer.ins.maxTime;
 
+        }
+
+        foreach (var VARIABLE in cardCategoryImages)
+        {
+            VARIABLE.color=Color.white;
         }
         cardReceiverPanel.SetActive(false);
         card.sprite = cardBack;
