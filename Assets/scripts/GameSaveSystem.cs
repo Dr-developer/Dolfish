@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 public class GameSaveSystem : MonoBehaviour
@@ -33,16 +33,13 @@ public class GameSaveSystem : MonoBehaviour
     void Start()
     {
         if (!PlayerPrefs.HasKey("FirstTime"))
-        {
-            
-            PlayerPrefs.SetString(Email,null);
+        {   PlayerPrefs.SetString(Email,null);
             PlayerPrefs.SetString(Name,null);
             PlayerPrefs.SetString(Password,null);
             PlayerPrefs.SetString(userToken,"not");
             PlayerPrefs.SetInt(LoginBefore,0);
             PlayerPrefs.SetInt("FirstTime",1);
             
-
         }
     }
 
@@ -105,4 +102,31 @@ public class GameSaveSystem : MonoBehaviour
         }
        
     }
+    public void SaveData(Save data)
+    {
+        Save save = data;
+        
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/gamesave.save");
+        bf.Serialize(file, save);
+        file.Close();
+        Debug.Log("Data Saved ");
+    }
+
+    public Save LoadData()
+    {
+        Save save=new Save();
+        if (File.Exists(Application.persistentDataPath + "/gamesave.save"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/gamesave.save", FileMode.Open);
+            save = (Save)bf.Deserialize(file);
+            file.Close();
+            Debug.Log("Data Load ");
+        }
+
+        return save;
+
+    }
+
 }

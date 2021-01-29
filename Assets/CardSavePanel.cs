@@ -10,24 +10,14 @@ public class CardSavePanel : MonoBehaviour
 {
     public InputField categoryInputField;
     public InputField cardNameInputField;
+    
     private Cat_so _cat;
     private string _categoryName;
     private string _cardName;
     private Sprite _cardImage;
     private AudioSource _cardAudioClip;
-
     private const string SavePath = "Assets/cards/";
-    // Start is called before the first frame update
-    void Start()
-    {
-     
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
     static Sprite SpriteFromTex2D(Texture2D texture)
     {
         return Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
@@ -72,7 +62,8 @@ public class CardSavePanel : MonoBehaviour
 
     public void CardName()
     {
-        _cardName = cardNameInputField.name;
+        _cardName = cardNameInputField.text;
+        Debug.Log(_cardName);
         
     }
     public void OnCreat()
@@ -81,15 +72,29 @@ public class CardSavePanel : MonoBehaviour
         _cat.Name = _categoryName;
         _cat.cardImgs=new Sprite[1];
         _cat.cardImgs[0] = _cardImage;
-       
-        if (!Directory.Exists(SavePath + _categoryName))
-        {
-            Directory.CreateDirectory(SavePath + _categoryName);
-        }
+        CheckCategoryExist();
         AssetDatabase.CreateAsset(_cat,SavePath+_categoryName+"/"+_cardName+".asset");
         AssetDatabase.SaveAssets();
         EditorUtility.FocusProjectWindow();
         Selection.activeObject = _cat;
+         SaveCardCategory();
+    }
+
+    private void SaveCardCategory()
+    {
+        Save save = new Save();
+       
+                save.CardsCatName.Add(_categoryName);
+                GameSaveSystem.Instans.SaveData(save);
+           
+    }
+
+    public void CheckCategoryExist()
+    {
+        if (!Directory.Exists(SavePath + _categoryName))
+        {
+            Directory.CreateDirectory(SavePath + _categoryName);
+        }
     }
     
 }
