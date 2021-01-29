@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 public class RandomCardGenrtor : MonoBehaviour
@@ -65,8 +66,9 @@ public class RandomCardGenrtor : MonoBehaviour
         if (GameManger.ins.playerTurn == humanPlayerTurn)
         {
             Debug.Log("Your Turn");
-            
             PutCardInPlace.ins.RemoveThePanel();//How To go To other player 
+            PutCardInPlace.ins.playerTimer.SetActive(true);
+            PlayeTimer.ins.timeLeft = PlayeTimer.ins.maxTime;
             return; 
         }
         if (random == sendItToAi)

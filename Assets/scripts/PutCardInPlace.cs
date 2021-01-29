@@ -391,9 +391,10 @@ public class PutCardInPlace : MonoBehaviour
    
     public void RemoveThePanel()
     {
+       
+        hidePanel.SetActive(false);
         playerTimer.SetActive(true);
         PlayeTimer.ins.timeLeft = PlayeTimer.ins.maxTime;
-        hidePanel.SetActive(false);
        
     }
 

@@ -258,7 +258,7 @@ namespace AndroidGoodiesExamples
 			var shouldGenerateThumbnails = true;
 
 			// if image is larger it will be downscaled to the max size proportionally
-			var imageResultSize = ImageResultSize.Max512;
+			var imageResultSize = ImageResultSize.Max1024;
 			AGGallery.PickImageFromGallery(
 				selectedImage =>
 				{
@@ -295,7 +295,7 @@ namespace AndroidGoodiesExamples
 					AGUIMisc.ShowToast(msg);
 					Debug.Log(msg);
 					image.sprite = SpriteFromTex2D(imageTexture2D);
-
+				
 					// Clean up
 					Resources.UnloadUnusedAssets();
 				},
