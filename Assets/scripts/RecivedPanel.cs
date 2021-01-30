@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -39,7 +40,7 @@ public class RecivedPanel : MonoBehaviour
     }
    //Initiate the Card Receiver Stution 
     public void InitiateCardReceiver()
-    {  
+    {  Debug.Log("call");
         hideThePanel.SetActive(true);
         PutCardInPlace.ins.passPanel.SetActive(false);
         PutCardInPlace.ins.playerTimer.SetActive(false);
@@ -57,6 +58,7 @@ public class RecivedPanel : MonoBehaviour
         {
             playerButtons[i].interactable = false;
         }
+        cardReceiverPanel.SetActive(true);
         SelectButtons(); 
     }
     //Change The Color Of Button When Player Click On It
@@ -66,18 +68,29 @@ public class RecivedPanel : MonoBehaviour
         switch (cardCategory)
         {
             case "Food":
+                cardReceiverPanel.SetActive(true);
+
                 cardCategoryImages[0].color=Color.green;
+                
                 break;
             case "Clothe":
+                cardReceiverPanel.SetActive(true);
+
                 cardCategoryImages[1].color=Color.green;
                  break;
             case "Job" :
+                cardReceiverPanel.SetActive(true);
+
                 cardCategoryImages[2].color=Color.green;
                 break;
             case "Place":
+                cardReceiverPanel.SetActive(true);
+
                 cardCategoryImages[3].color=Color.green;
                 break;
             case "Money":
+                cardReceiverPanel.SetActive(true);
+                
                 cardCategoryImages[4].color=Color.green;
                 break;
             default:
@@ -124,12 +137,12 @@ public class RecivedPanel : MonoBehaviour
             card.sprite = cardImages[_imageIndex];
         }
 
-        StartCoroutine(Disable());
+        Disable();
     }
     //Don't Belive this Player Word 
     public void DontAcceptPlayerWord()
     {
-        StartCoroutine(Disable());
+        Disable();
         var random = Random.Range(0, 2);
         if (_playerSaidLie)
         {
@@ -194,6 +207,7 @@ public class RecivedPanel : MonoBehaviour
             if (String.IsNullOrEmpty(arr[i].text))
             {
                 arr[i].text = text;
+                Debug.Log("plcae of card "+i+"name"+text);
                 GameOverChecker(arr);
                 GameManger.ins.PlayerTurner();
                 RandomCardGenrtor.Ins.PlayerTurns();
@@ -212,20 +226,20 @@ public class RecivedPanel : MonoBehaviour
                 counter++;
                 if (counter == 3)
                 {
+                    Debug.Log("fiiled");
                     GameManger.ins.GameOver();
                 }
             }
            
         }
     }
-    private IEnumerator Disable()
+    private void Disable()
     {
-        yield return  new WaitForSeconds(1.2f);
         if (GameManger.ins.playerTurn==0)
         {
             PutCardInPlace.ins.hidePanel.SetActive(false);
             PutCardInPlace.ins.passPanel.SetActive(false);
-            PutCardInPlace.ins.playerTimer.SetActive(false);
+            //PutCardInPlace.ins.playerTimer.SetActive(false);
             PlayeTimer.ins.timeLeft = PlayeTimer.ins.maxTime;
 
         }
@@ -266,6 +280,11 @@ public class RecivedPanel : MonoBehaviour
 
         }
     }
-
+    
+    private async Task WaitOneSecondAsync()
+    {
+        await Task.Delay(TimeSpan.FromSeconds(3));
+        Debug.Log("Finished waiting.");
+    }   
 
 }

@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using DeadMosquito.AndroidGoodies;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CardSavePanel : MonoBehaviour
@@ -34,8 +37,7 @@ public class CardSavePanel : MonoBehaviour
                 string msg = string.Format("{0} was loaded from gallery with size {1}x{2}",
                     selectedImage.OriginalPath, imageTexture2D.width, imageTexture2D.height);
                 _cardImage = SpriteFromTex2D(imageTexture2D);
-                AssetDatabase.CreateAsset(_cardImage,SavePath+_categoryName+"/"+_cardImage.name+".jpg");
-                AssetDatabase.SaveAssets();
+              
                 // Clean up
                 Resources.UnloadUnusedAssets();
             },
@@ -71,13 +73,17 @@ public class CardSavePanel : MonoBehaviour
         _cat = ScriptableObject.CreateInstance<Cat_so>();
         _cat.Name = _categoryName;
         _cat.cardImgs=new Sprite[1];
-        _cat.cardImgs[0] = _cardImage;
+       
         CheckCategoryExist();
+/*
+#if UNITY_EDITOR
         AssetDatabase.CreateAsset(_cat,SavePath+_categoryName+"/"+_cardName+".asset");
         AssetDatabase.SaveAssets();
         EditorUtility.FocusProjectWindow();
         Selection.activeObject = _cat;
+#endif*/
          SaveCardCategory();
+         SceneManager.LoadScene(4);
     }
 
     private void SaveCardCategory()

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
@@ -57,17 +58,19 @@ public class RandomCardGenrtor : MonoBehaviour
             }  
         }
     }
-    public void PlayerTurns()
+    public async void PlayerTurns()
     {//TODO :This IS where The Bugs Happends
         const int sendItToAi = 1;
         const int sendItToPlayer = 0;
         const int humanPlayerTurn = 0;
         var random = Random.Range(0, 2);
+     await WaitOneSecondAsync();
         if (GameManger.ins.playerTurn == humanPlayerTurn)
         {
             Debug.Log("Your Turn");
             PutCardInPlace.ins.RemoveThePanel();//How To go To other player 
             PutCardInPlace.ins.playerTimer.SetActive(true);
+            Debug.Log(PutCardInPlace.ins.playerTimer.activeSelf);
             PlayeTimer.ins.timeLeft = PlayeTimer.ins.maxTime;
             return; 
         }
@@ -166,7 +169,7 @@ public class RandomCardGenrtor : MonoBehaviour
         }
         else if (random==sendItToPlayer)
         {
-            StartCoroutine(ActiveCardReceiverPanel());
+            ActiveCardReceiverPanel();
         }
         if (GameManger.ins.playerTurn == 1)
         {
@@ -225,9 +228,9 @@ public class RandomCardGenrtor : MonoBehaviour
         {
             //Note : may be it happened to work 
             Debug.Log("PlayerDontAccept This Card ");
-             //RecivedPanel.ins.cardName = receivedCardName;
-            // RecivedPanel.ins.cardCategory = receivedCardCat;
-            // RecivedPanel.ins.PutItInFrontOfYou();
+             RecivedPanel.ins.cardName = receivedCardName;
+            RecivedPanel.ins.cardCategory = receivedCardCat;
+             RecivedPanel.ins.PutItInFrontOfYou();
            PlayerTurns();
         }
     }
@@ -238,7 +241,7 @@ public class RandomCardGenrtor : MonoBehaviour
         if (String.IsNullOrEmpty(arry[random].text))
         {
             GameOverChecker(arry);
-            StartCoroutine(PutIt(arry, text, random));
+            PutIt(arry, text, random);
         }
         else
         {
@@ -246,10 +249,11 @@ public class RandomCardGenrtor : MonoBehaviour
         }
             
     }
-    private IEnumerator  PutIt(Text[]arry,string text,int index)
+    private void  PutIt(Text[]arry,string text,int index)
     {
-        yield return  new WaitForSeconds(1.2f);
         arry[index].text = text;
+        Debug.Log("plcae of card "+index+"name"+text);
+
         PlayerTurns();
     }
     private void GameOverChecker(Text[]arry)//
@@ -308,9 +312,9 @@ public class RandomCardGenrtor : MonoBehaviour
         }
         
     }
-    private IEnumerator ActiveCardReceiverPanel()
+    private async void  ActiveCardReceiverPanel()
     {
-        yield return new WaitForSeconds(1.2f);
+        await WaitOneSecondAsync();
         if (PutCardInPlace.ins.sendCardActionPanelWork == false)
         {
             cardReceiverPanel.SetActive(true);
@@ -318,7 +322,12 @@ public class RandomCardGenrtor : MonoBehaviour
         }
 
     }
-   
+    private async Task WaitOneSecondAsync()
+    {
+       int  randomWaite= Random.Range(1, 5);
+        await Task.Delay(TimeSpan.FromSeconds(randomWaite));
+        Debug.Log("Finished waiting.");
+    }   
     
 
  

@@ -12,7 +12,8 @@ using UnityEngine.UI;
 public class AutoMatchMaking  : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Text joinedPlayersName;
+    private string _joinedPlayersName;
+    public GameObject panel;
     public Text stute;
     void Start()
     {
@@ -42,30 +43,35 @@ public class AutoMatchMaking  : MonoBehaviour
 
     private void JoinedRoom(object sender, JoinEvent joinEvent)
     {
-         
+        stute.text = "Game Service Not Connected ";
+        panel.SetActive(false);
+        SceneManager.LoadScene(0);
     }
 
     private void AutoMatchUpdate(object sender, AutoMatchEvent matchEvent)
     {
+        
         if (matchEvent.Status == AutoMatchStatus.OnWaiting)
         {
             foreach (var VARIABLE in matchEvent.Players)
             {
-                joinedPlayersName.text = VARIABLE.Name+"\n";
+                _joinedPlayersName= VARIABLE.Name+"\n";
             }
         }
         else
         {
-            //TODO :GO TO Sort Menu;
+            stute.text = "Game Service Not Connected ";
+            SceneManager.LoadScene(0);
         }
     }
     public async void OnPlayOnline()
     {
+        panel.SetActive(true);
         if (GameService.GSLive.IsCommandAvailable())
         {
             await GameService.GSLive.TurnBased.AutoMatch(new GSLiveOption.AutoMatchOption(
                 "player", 2, 2, false));
-            stute.text = "Please Waite We Are Looking For A Player ";
+            stute.text = "Please Waite We Are Looking For A Player "+"PlayerThatJoined The Game "+_joinedPlayersName;
 
         }
         else

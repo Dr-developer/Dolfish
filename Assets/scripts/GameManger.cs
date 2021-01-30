@@ -34,15 +34,19 @@ public class GameManger : MonoBehaviour
         {
             numberOfCardInFrontPlayers[i] = 16;
         }
-        //TurnOfTheLight(numberOFcardInForntPlayers[0],playerOneLights);
-        //TurnOfTheLight(numberOFcardInForntPlayers[1],playerTwoLights);
-        //TurnOfTheLight(numberOFcardInForntPlayers[2],playerThreeLights);
+        /* this code for turning lights off by times
+         
+        TurnOfTheLight(numberOFcardInForntPlayers[0],playerOneLights);
+        TurnOfTheLight(numberOFcardInForntPlayers[1],playerTwoLights);
+        TurnOfTheLight(numberOFcardInForntPlayers[2],playerThreeLights);
+        
+        */
 
 
     }
     public void GameOver()
     {
-           gameOverPanel.SetActive(true);
+          gameOverPanel.SetActive(true);
         
     }
     public void OtherPlayersGameOver(int index)

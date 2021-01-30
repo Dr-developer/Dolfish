@@ -19,7 +19,6 @@ public class PutCardInPlace : MonoBehaviour
     [HideInInspector] public List<GameObject> actionCard;//List Of Action Card
     [HideInInspector] public List<GameObject> jobCards;//List of Job Cards
     [HideInInspector] public List<GameObject> placeCards;//List Of Place Cards 
-      
     [SerializeField] public Button[] cardButton=new Button[5];
     public string cat;//card Category
     public GameObject passPanel;
@@ -323,16 +322,19 @@ public class PutCardInPlace : MonoBehaviour
         if (ClickedCard.GetComponent<Image>().name != "dolphin")
         {
             RandomCardGenrtor.Ins.PutItInFrontOfPlayer();
+            Debug.Log("not dol");
         }
         else if (ClickedCard.GetComponent<Image>().name == "dolphin")
         {
             RandomCardGenrtor.Ins.PutItInFrontOfPlayer(true);
+            Debug.Log("Dol");
         }
         else if (timer )
         {
             RandomCardGenrtor.Ins.PutItInFrontOfPlayer(false,true);
+            Debug.Log("normal");
         }
-        //GameManger.ins.PlayerTurner();
+       // GameManger.ins.PlayerTurner();
     }
 
  

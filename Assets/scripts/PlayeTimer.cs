@@ -36,17 +36,29 @@ public class PlayeTimer : MonoBehaviour
             timeLeft -= Time.deltaTime;
             Timebar.fillAmount = timeLeft / maxTime;
         }
-        else if(timeLeft<0 && stopTheTimer==false&&PutCardInPlace.ins.passPanel.activeSelf==false)
+        else
         {
-            //GameManger.ins.PlayerTurner();
-            //RandomCardGenrtor.Ins.PlayerTurns();
-            //PutCardInPlace.ins.HideThePanel();
-            //stopTheTimer = true;
+            TimeEnded();
+
         }
-        else if (timeLeft<0 && stopTheTimer==false&& PutCardInPlace.ins.passPanel.activeSelf)
-        {
-            //TODO:This Where the Bug IS Happening =)))
-            // PutCardInPlace.ins.PassTheCardToWho(true);   
-        }
+    }
+
+    public void TimeEnded()
+    {
+         if(timeLeft<0 && stopTheTimer==false&&PutCardInPlace.ins.passPanel.activeSelf==false) 
+         {
+            GameManger.ins.PlayerTurner();
+            RandomCardGenrtor.Ins.PlayerTurns();
+            PutCardInPlace.ins.HideThePanel();
+            stopTheTimer = true;
+            gameObject.SetActive(false);
+         }
+         else if (timeLeft<0 && stopTheTimer==false&& PutCardInPlace.ins.passPanel.activeSelf)
+         {
+            
+            PutCardInPlace.ins.PassTheCardToWho(true);   
+            gameObject.SetActive(false);
+
+         }
     }
 }
