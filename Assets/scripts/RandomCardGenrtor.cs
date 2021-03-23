@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using DeadMosquito.AndroidGoodies;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
@@ -12,21 +13,25 @@ public class RandomCardGenrtor : MonoBehaviour
     //TODO:Color of Button Fixing  
     private const int NumberOfPlaceText=9;
     public static RandomCardGenrtor Ins;
-    public string receivedCardName;//Name Of Card That Ai Received From Player
-    public string receivedCardCat;//Category Of CardThat Ai Recived From Player
     public Text[] foodCardText=  new Text[NumberOfPlaceText];
     public Text[] placeCardText= new Text[NumberOfPlaceText];
     public Text[] clothCardText= new Text[NumberOfPlaceText];
     public Text[] jobCardText  = new Text[NumberOfPlaceText];
     public Text[] moneyText    = new Text[NumberOfPlaceText];
+    
     private List<string> cloth =new List<string>() {"dress", "jacket", "jean", "scarf", "gloves"};//name of cloth cards
     private List<string> food =new List<string>() {"coffee","frenchFires","ice cream","pizza","sandewich"};//name of food cards
     private List<string> jobs = new List<string>(){"cashier","customer","janitor","porter","seller"};//name of job cards
     private List<string> money =new List<string>() {"cash", "cheque", "coin", "credit card", "money"};//name of money cards
     private List<string> places =new List<string>() {"changing room", "elevator", "escalator", "restroom","store"};//name of place cards
-    private List<string> cats = new List<string>(){"Clothe", "Food", "Job", "Place", "Money"};//name of Game Used Cats 
+    private List<string> cats = new List<string>(){"Clothe", "Food", "Job", "Place", "Money"};//name of Game Used Cats
     public GameObject cardReceiverPanel;
-   
+    public List<int> playersNamesIndex;
+    
+    public GameObject[] hollowes;
+    
+    private IEnumerator _noneHumanPlaying;
+
     public void Awake()
     {
         Ins = this;
@@ -35,7 +40,12 @@ public class RandomCardGenrtor : MonoBehaviour
     private void Start()
     {
       CallToRemoveSameCard();
+      
+    
     }
+
+ 
+
     public void CallToRemoveSameCard()
     {
         RemoveSameCard(cloth, PutCardInPlace.ins.clothCardName);
@@ -58,203 +68,106 @@ public class RandomCardGenrtor : MonoBehaviour
             }  
         }
     }
-    public async void PlayerTurns()
-    {//TODO :This IS where The Bugs Happends
-        const int sendItToAi = 1;
-        const int sendItToPlayer = 0;
-        const int humanPlayerTurn = 0;
-        var random = Random.Range(0, 2);
-     await WaitOneSecondAsync();
-        if (GameManger.ins.playerTurn == humanPlayerTurn)
-        {
-            Debug.Log("Your Turn");
-            PutCardInPlace.ins.RemoveThePanel();//How To go To other player 
-            PutCardInPlace.ins.playerTimer.SetActive(true);
-            Debug.Log(PutCardInPlace.ins.playerTimer.activeSelf);
-            PlayeTimer.ins.timeLeft = PlayeTimer.ins.maxTime;
-            return; 
-        }
-        if (random == sendItToAi)
-        {   
-            var chosenCategory= Random.Range(0, 5);
-            receivedCardCat = cats[chosenCategory];
-         
-            Debug.Log("chosen category  index : " + chosenCategory);
-            if (chosenCategory == 0)
-            {
-                if (cloth.Count ==0)
-                {
-                    Debug.Log("Clothe is Null");
-                    PlayerTurns();
-                }
-                var chosenCategoryIndex = Random.Range(0, cloth.Count);
-                Debug.Log(chosenCategoryIndex);
-                Debug.Log(cloth.Count);
-                Debug.Log(cloth[chosenCategoryIndex]);
-                receivedCardName = cloth[chosenCategoryIndex];
-                Debug.Log(receivedCardName);
-                PutItInFrontOfPlayer();
-                GameManger.ins.PlayerTurner();
-                cloth.RemoveAt(chosenCategoryIndex);
-
-            }
-            else if (chosenCategory == 1)
-            {
-                if (food.Count==0)
-                {
-                    Debug.Log("Food is Null");
-                    PlayerTurns();
-                }
-                var chosenCategoryIndex = Random.Range(0, food.Count); 
-                Debug.Log(chosenCategoryIndex);
-                Debug.Log(food.Count);
-                Debug.Log(food[chosenCategoryIndex]);
-                receivedCardName = food[chosenCategoryIndex];
-             
-                PutItInFrontOfPlayer();
-                GameManger.ins.PlayerTurner();
-                food.RemoveAt(chosenCategoryIndex);
-
-            }
-            else if (chosenCategory == 2)
-            {
-                if (jobs.Count == 0)
-                {
-                    Debug.Log("Job is Null");
-                    PlayerTurns();
-                }
-                var chosenCategoryIndex = Random.Range(0, jobs.Count);   Debug.Log(chosenCategoryIndex);
-                Debug.Log(jobs.Count);
-                Debug.Log(jobs[chosenCategoryIndex]);
-                receivedCardName = jobs[chosenCategoryIndex];
-             
-                PutItInFrontOfPlayer();
-                GameManger.ins.PlayerTurner();
-                jobs.RemoveAt(chosenCategoryIndex);
-
-            }
-            else if (chosenCategory == 3)
-            {
-                if (places.Count == 0)
-                {
-                    Debug.Log("Places IS null");
-                    PlayerTurns();
-                }
-                var chosenCategoryIndex = Random.Range(0, places.Count);
-                receivedCardName = places[chosenCategoryIndex];
-            
-                PutItInFrontOfPlayer();
-                GameManger.ins.PlayerTurner();
-                places.RemoveAt(chosenCategoryIndex);
-
-            }
-            else if (chosenCategory == 4)
-            {
-                if (money.Count == 0)
-                {
-                    PlayerTurns();
-                }
-                var chosenCategoryIndex = Random.Range(0, money.Count);
-                receivedCardName = money[chosenCategoryIndex];
-                PutItInFrontOfPlayer();
-                GameManger.ins.PlayerTurner();
-                money.RemoveAt(chosenCategoryIndex);
-
-            }
-            else
-            {
-                Debug.LogError("Invalid Index");
-            }
-           
-        }
-        else if (random==sendItToPlayer)
-        {
-            ActiveCardReceiverPanel();
-        }
-        if (GameManger.ins.playerTurn == 1)
-        {
-            GameManger.ins.numberOfCardInFrontPlayers[0]--;
-        }
-        else if  (GameManger.ins.playerTurn == 2)
-        {
-            GameManger.ins.numberOfCardInFrontPlayers[1]--;
-        }
-        else if (GameManger.ins.playerTurn == 3)
-        {
-            GameManger.ins.numberOfCardInFrontPlayers[2]--;
-        }         
-    }
-    public void PutItInFrontOfPlayer(bool dolphin=false,bool timout=false)
+  
+    public void PutItInFrontOfNoneHumanPlayer(string cardCategory, string cardName,int localPlayersIndex ,bool dolphin=false,bool timout=false)
     {
-        const int acceptTheCard=1;
+      //  const int acceptTheCard=1;
         
-        var playerDecision = Random.Range(0,2);
-        if (dolphin)
-        {
-            playerDecision = acceptTheCard;
-            receivedCardCat = cats[Random.Range(0, cats.Count)];
-        }
+       // var playerDecision = Random.Range(0,2);
+       // if (dolphin)
+      //  {
+        //    playerDecision = acceptTheCard;
+      //      receivedCardCat = cats[Random.Range(0, cats.Count)];
+       // }
 
-        if (timout)
-        {
-            playerDecision = 2;
-        }
+      //  if (timout)
+      //  {
+        //    playerDecision = 2;
+        //}
      
-        if (playerDecision==acceptTheCard)
-        {
-            switch (receivedCardCat)
+      //  if (playerDecision==acceptTheCard)
+       // {
+            switch (cardCategory)
             {
                 case "Clothe":
-                    PutTheCardsInEmptyPlaces(clothCardText, receivedCardName);
+                    PutTheCardsInEmptyPlaces(clothCardText, cardName,localPlayersIndex);
                     break;
                 case "Food":
-                    PutTheCardsInEmptyPlaces(foodCardText, receivedCardName);
+                    PutTheCardsInEmptyPlaces(foodCardText, cardName,localPlayersIndex);
                     break;
                 case "Job":
-                    PutTheCardsInEmptyPlaces(jobCardText, receivedCardName);
+                    PutTheCardsInEmptyPlaces(jobCardText, cardName,localPlayersIndex);
                     break;
                 case "Place":
-                    PutTheCardsInEmptyPlaces(placeCardText, receivedCardName);
+                    PutTheCardsInEmptyPlaces(placeCardText, cardName,localPlayersIndex);
                     break;
                 case "Money":
-                    PutTheCardsInEmptyPlaces(moneyText, receivedCardName);
+                    PutTheCardsInEmptyPlaces(moneyText, cardName,localPlayersIndex);
                     break;
                 default:
                     Debug.LogError("UnValid Card Category");
                     break;
             }
-        }
-        else//Pas The Card To OtherPlayer
-        {
+      //  }
+      //  else//Pas The Card To OtherPlayer
+       // {
             //Note : may be it happened to work 
-            Debug.Log("PlayerDontAccept This Card ");
-             RecivedPanel.ins.cardName = receivedCardName;
-            RecivedPanel.ins.cardCategory = receivedCardCat;
-             RecivedPanel.ins.PutItInFrontOfYou();
-           PlayerTurns();
-        }
+            //Debug.Log("PlayerDontAccept This Card ");
+            // RecivedPanel.ins.cardName = receivedCardName;//BUG : look for here
+            //  RecivedPanel.ins.cardCategory = receivedCardCat;//BUG: look for here 
+           //  RecivedPanel.ins.PutItInFrontOfYou();
+         //  PlayerTurns();
+       // }
     }
-    private void PutTheCardsInEmptyPlaces(Text[] arry, string text)
+    private void PutTheCardsInEmptyPlaces(Text[] array, string text, int playerIndex)
     {
-        l1:
-        var random = Random.Range(1, 9);
-        if (String.IsNullOrEmpty(arry[random].text))
-        {
-            GameOverChecker(arry);
-            PutIt(arry, text, random);
-        }
-        else
-        {
-            goto l1;
-        }
-            
+        if (playerIndex == 2)
+           FindEmptyPlace(array,text,playerIndex);
+        else if (playerIndex == 3)
+           FindEmptyPlace(array,text,playerIndex);
+        else if (playerIndex == 4) FindEmptyPlace(array,text,playerIndex);
     }
-    private void  PutIt(Text[]arry,string text,int index)
+
+    private void FindEmptyPlace(Text[] array, string text, int index)
+    {
+        if (index == 2)
+        {
+            for (int i = 0; i < 3; i++)
+                if (string.IsNullOrEmpty(array[i].text))
+                {
+                    GameOverChecker(array);
+                    PutIt(array, text, i, index);
+                    break;
+
+                }
+        }
+        else if (index == 3)
+        {
+            for (var i = 3; i < 6; i++)
+                if (string.IsNullOrEmpty(array[i].text))
+                {
+                    GameOverChecker(array);
+                    PutIt(array, text, i, index);
+                    break;
+
+                }
+        }
+        else if (index == 4)
+        {
+            for (var i = 6; i < 9; i++)
+                if (string.IsNullOrEmpty(array[i].text))
+                {
+                    GameOverChecker(array);
+                    PutIt(array, text, i, index);
+                    break;
+                }
+        }
+    }
+    private void  PutIt(Text[]arry,string text,int index, int playerIndex)
     {
         arry[index].text = text;
-        Debug.Log("plcae of card "+index+"name"+text);
+        StartCoroutine(NoneHumanPlaying(playerIndex));
 
-        PlayerTurns();
     }
     private void GameOverChecker(Text[]arry)//
     {
@@ -265,49 +178,46 @@ public class RandomCardGenrtor : MonoBehaviour
         
         for (int i = 0; i < 3; i++)
         {
-            
-            if (String.IsNullOrEmpty(arry[i].text)==false)
+            if (!String.IsNullOrEmpty(arry[i].text))
             {
                 counter1++;
-                Debug.Log(counter1);
                 if (counter1 == 3)
                 {
                     playerindex = 0;
+                    Debug.Log("Player " + playerindex + 2 + "is Game overed ");
                     GameManger.ins.OtherPlayersGameOver(playerindex);
                 }
+             
             }
-           
         }
 
         for (int i = 3; i < 6; i++)
         {
-            if (String.IsNullOrEmpty(arry[i].text)==false)
+            if (!String.IsNullOrEmpty(arry[i].text))
             {
                 counter2++;
-                Debug.Log(counter2);
-
                 if (counter2 == 3)
                 {
-                   
-
                     playerindex = 1;
+                    Debug.Log("Player " + playerindex + 2 + "is Game overed ");
                     GameManger.ins.OtherPlayersGameOver(playerindex);
                 }
-            }  
+             
+            }
         }
+
         for (int i = 6; i < 9; i++)
         {
-            
-            if (String.IsNullOrEmpty(arry[i].text)==false)
+            if (!String.IsNullOrEmpty(arry[i].text) )
             {
                 counter3++;
-                Debug.Log(counter3);
-
                 if (counter3 == 3)
-                {   playerindex = 2;
+                {
+                    playerindex = 2;
+                    Debug.Log("Player " + playerindex + 2 + "is Game overed ");
                     GameManger.ins.OtherPlayersGameOver(playerindex);
                 }
-
+               
             } 
         }
         
@@ -316,19 +226,333 @@ public class RandomCardGenrtor : MonoBehaviour
     {
         await WaitOneSecondAsync();
         if (PutCardInPlace.ins.sendCardActionPanelWork == false)
-        {
-            cardReceiverPanel.SetActive(true);
-            RecivedPanel.ins.InitiateCardReceiver();
-        }
+         cardReceiverPanel.SetActive(true);
+        // RecivedPanel.ins.InitiateCardReceiver();//BUG:look for here 
 
     }
     private async Task WaitOneSecondAsync()
     {
-       int  randomWaite= Random.Range(1, 5);
+       int  randomWaite= Random.Range(3,8);
         await Task.Delay(TimeSpan.FromSeconds(randomWaite));
-        Debug.Log("Finished waiting.");
-    }   
-    
+    }
 
- 
+    public IEnumerator   PlayerIsPlaying(int playerName , bool bluff,string senderCategory, string category ,string cardName )
+    {
+        playersNamesIndex.Add(playerName);
+
+        const int pass = 1;
+        const int playingTheGame = 0;
+        var randomDecision = Random.Range(0, 2);
+        
+        if (randomDecision == pass)
+        {
+            if (PassToWho() != -1)
+            {
+                yield return new WaitForSeconds(2);
+                var senderCategoryRandom = cats[Random.Range(0, cats.Count)];
+                GameManger.ins.FindingThePlayingCharacter(PassToWho(), category, senderCategoryRandom, cardName,
+                    playerName);
+            }
+            else
+            {
+                yield return new WaitForSeconds(2);
+                StartCoroutine(PlayingTheGame(bluff, category, cardName, playerName));
+            }
+        }
+        else if (randomDecision == playingTheGame)
+        {
+         
+            StartCoroutine(PlayingTheGame(bluff, category, cardName, playerName));
+        }
+        
+      
+    }
+
+    private int PassToWho()
+    {
+        
+        var playerName = Random.Range(1, 5);
+        if (playersNamesIndex.Contains(playerName)|| GameManger.ins.listOfGameOverPlayers.Contains(playerName+1))
+        {
+            if (playersNamesIndex.Count == 4) return -1;
+          
+            if (GameManger.ins.listOfGameOverPlayers.Count ==1)
+            {
+                if (GameManger.ins.listOfGameOverPlayers[0] == 2)
+                {
+                    return 3;
+                }
+
+                if (GameManger.ins.listOfGameOverPlayers[0] == 3)
+                {
+                    return 4;
+                }
+
+                if (GameManger.ins.listOfGameOverPlayers[0] == 4)
+                {
+                    return 3; 
+                }
+            }
+            else   if (GameManger.ins.listOfGameOverPlayers.Count == 2)
+            {
+                Debug.Log("Fuck YOU");
+                GameManger.ins.Win();
+            }
+            else
+            {
+                return PassToWho();
+            }
+            
+           
+        }
+      
+      
+        return playerName;
+    }
+
+    private IEnumerator  PlayingTheGame(bool bluff,string category, string cardName,int playerIndex)
+    {
+        if (PutCardInPlace.ins.hidePanel.activeSelf || playerIndex != 0)
+        {
+            const int no = 0;
+            const int yes = 1;
+
+            var randomDecision = Random.Range(0, 2);
+
+            if (bluff && randomDecision == yes)
+            {
+                yield return new WaitForSeconds(3);
+                PutItInFrontOfNoneHumanPlayer(category, cardName, playerIndex);
+                StartCoroutine(NoneHumanPlaying(playerIndex));
+                playersNamesIndex = new List<int>();
+            }
+            else if (bluff && randomDecision == no)
+            {
+                if (playerIndex == 1)
+                {
+                    yield return new WaitForSeconds(3);
+                    RecivedPanel.ins.PutItInFrontOfYou(category, cardName);
+                    PutCardInPlace.ins.HumanTurn();
+                    GameManger.ins.DisableGreenLight();
+                    GameManger.ins.DeactivateTheCategoryHollowed();
+                    playersNamesIndex = new List<int>();
+                }
+                else
+                {
+                    PutItInFrontOfNoneHumanPlayer(category, cardName, playerIndex);
+                    StartCoroutine(NoneHumanPlaying(playerIndex));
+                    playersNamesIndex = new List<int>();
+                }
+
+            }
+            else if (bluff == false && randomDecision == yes)
+            {
+                if (playerIndex == 1)
+                {
+                    yield return new WaitForSeconds(3);
+                    RecivedPanel.ins.PutItInFrontOfYou(category, cardName);
+                    PutCardInPlace.ins.HumanTurn();
+                    GameManger.ins.DisableGreenLight();
+                    GameManger.ins.DeactivateTheCategoryHollowed();
+                    playersNamesIndex = new List<int>();
+                }
+                else
+                {
+                    PutItInFrontOfNoneHumanPlayer(category, cardName, playerIndex);
+                    StartCoroutine(NoneHumanPlaying(playerIndex));
+                    playersNamesIndex = new List<int>();
+                }
+
+
+
+            }
+            else if (bluff == false && randomDecision == no)
+            {
+                yield return new WaitForSeconds(3);
+                PutItInFrontOfNoneHumanPlayer(category, cardName, playerIndex);
+                StartCoroutine(NoneHumanPlaying(playerIndex));
+                playersNamesIndex = new List<int>();
+
+
+            }
+        }
+    }
+//Witch None Human PlayTheGame 
+    public IEnumerator  NoneHumanPlaying(int playerIndex)
+    {
+        if (PutCardInPlace.ins.hidePanel.activeSelf|| playerIndex!=0 )
+        {
+            Debug.Log(playerIndex+"Is Playing ");
+        GameManger.ins.DisableGreenLight();
+        GameManger.ins.DeactivateTheCategoryHollowed();
+        TurnOfCardsLights(playerIndex);
+        TurnOnTheHollow(playerIndex);
+        List<int> localPlayersIndex=new List<int>(){1,2,3,4};
+        localPlayersIndex.Remove(playerIndex);
+        var chosenCategory = Random.Range(0, 5); 
+        string cardCategory = cats[chosenCategory];
+        var choiceSenderCategory = Random.Range(0, 5);
+        string senderCategory=cats[choiceSenderCategory];
+        int receiverPlayerIndex = localPlayersIndex[Random.Range(0, localPlayersIndex.Count)]; 
+        string cardName;
+        /*if (cardCategory == cats[0])
+        {
+            if (cloth.Count == 0)  StartCoroutine(NoneHumanPlaying(playerIndex));
+            var chosenCategoryIndex = Random.Range(0, cloth.Count);
+            cardName = cloth[chosenCategoryIndex];
+            cloth.RemoveAt(chosenCategoryIndex);
+            playersNamesIndex.Add(playerIndex);
+            yield return new WaitForSeconds(Random.Range(5,15));
+            GameManger.ins.FindingThePlayingCharacter(receiverPlayerIndex, cardCategory, senderCategory, cardName,playerIndex);
+
+
+        }
+        else if (cardCategory == cats[1])
+        {
+            if (food.Count == 0) StartCoroutine(NoneHumanPlaying(playerIndex));
+            var chosenCategoryIndex = Random.Range(0, food.Count);
+            cardName = food[chosenCategoryIndex];
+            food.RemoveAt(chosenCategoryIndex);
+            playersNamesIndex.Add(playerIndex);
+            yield return new WaitForSeconds(Random.Range(5,15));
+            GameManger.ins.FindingThePlayingCharacter(receiverPlayerIndex, cardCategory, senderCategory, cardName,playerIndex);
+
+            
+        }
+        else if (cardCategory == cats[2])
+        {
+            if (jobs.Count == 0)  StartCoroutine(NoneHumanPlaying(playerIndex));
+            var chosenCategoryIndex = Random.Range(0, jobs.Count);
+            cardName = jobs[chosenCategoryIndex];
+            jobs.RemoveAt(chosenCategoryIndex);
+            playersNamesIndex.Add(playerIndex);
+            yield return new WaitForSeconds(Random.Range(5,15));
+
+            GameManger.ins.FindingThePlayingCharacter(receiverPlayerIndex, cardCategory, senderCategory, cardName,playerIndex);
+
+        }
+        else if (cardCategory == cats[3])
+        {
+            if (places.Count == 0) StartCoroutine(NoneHumanPlaying(playerIndex));
+            var chosenCategoryIndex = Random.Range(0, places.Count);
+            cardName = places[chosenCategoryIndex];
+            places.RemoveAt(chosenCategoryIndex);
+            playersNamesIndex.Add(playerIndex);
+            yield return new WaitForSeconds(Random.Range(5,15));
+
+            GameManger.ins.FindingThePlayingCharacter(receiverPlayerIndex, cardCategory, senderCategory, cardName,playerIndex);
+
+        }
+        else if (cardCategory == cats[4])
+        {
+            if (money.Count == 0)  StartCoroutine(NoneHumanPlaying(playerIndex));
+            var chosenCategoryIndex = Random.Range(0, money.Count);
+            cardName = money[chosenCategoryIndex];
+            money.RemoveAt(chosenCategoryIndex);
+            playersNamesIndex.Add(playerIndex);
+            yield return new WaitForSeconds(Random.Range(5,15));
+            GameManger.ins.FindingThePlayingCharacter(receiverPlayerIndex, cardCategory, senderCategory, cardName,playerIndex);
+
+        }*/
+          cardName=PreparationForNoneHumanPlaying(cardCategory);
+          if (cardName == "0")
+          {
+              Debug.LogError("Fuck You ");
+          }
+          playersNamesIndex.Add(playerIndex);
+          yield return new WaitForSeconds(Random.Range(5,15));
+          GameManger.ins.FindingThePlayingCharacter(receiverPlayerIndex, cardCategory, senderCategory, cardName,playerIndex);
+
+
+        }
+      
+    }
+
+    private string PreparationForNoneHumanPlaying(string cardCategory)
+    {
+        int t=  cats.FindIndex(x => x.StartsWith(cardCategory));
+        
+        string cardName = "0";
+        if (cardCategory == cats[0])
+        {
+            if (cloth.Count == 0)
+            {
+                cats.Remove("Clothe");
+                PreparationForNoneHumanPlaying(cats[1]);
+            }
+
+            var chosenCategoryIndex = Random.Range(0, cloth.Count);
+            cardName = cloth[chosenCategoryIndex];
+            cloth.RemoveAt(chosenCategoryIndex);
+        }
+        else if (cardCategory == cats[1])
+        {
+            if (food.Count == 0) PreparationForNoneHumanPlaying(cats[2]);
+            var chosenCategoryIndex = Random.Range(0, food.Count);
+            cardName = food[chosenCategoryIndex];
+            food.RemoveAt(chosenCategoryIndex);
+        }
+        else if (cardCategory == cats[2])
+        {
+            if (jobs.Count == 0) PreparationForNoneHumanPlaying(cats[3]);
+            var chosenCategoryIndex = Random.Range(0, jobs.Count);
+            cardName = jobs[chosenCategoryIndex];
+            jobs.RemoveAt(chosenCategoryIndex);
+        }
+        else if (cardCategory == cats[3])
+        {
+            if (places.Count == 0) PreparationForNoneHumanPlaying(cats[4]);
+            var chosenCategoryIndex = Random.Range(0, places.Count);
+            cardName = places[chosenCategoryIndex];
+            places.RemoveAt(chosenCategoryIndex);
+        }
+        else if (cardCategory == cats[4])
+        {
+            if (money.Count == 0) PreparationForNoneHumanPlaying(cats[1]);
+            var chosenCategoryIndex = Random.Range(0, money.Count);
+            cardName = money[chosenCategoryIndex];
+            money.RemoveAt(chosenCategoryIndex);
+        }
+
+        return cardName;
+    }
+
+    public List<int> GetPlayerNamesIndex()
+    {
+        return playersNamesIndex;
+    }
+
+    public void SetPlayerNameIndex(int index)
+    {
+        if (playersNamesIndex.Contains(index) == false)
+        {
+            playersNamesIndex.Add(index);
+        }
+    }
+    private void TurnOfCardsLights(int playerIndex)
+    {
+        if(playerIndex==2)GameManger.ins.numberOfCardInFrontPlayers[0]--;
+        if(playerIndex==3)GameManger.ins.numberOfCardInFrontPlayers[1]--;
+        if(playerIndex==4)GameManger.ins.numberOfCardInFrontPlayers[2]--;
+        GameManger.ins.TurnOfTheCardLights(playerIndex);
+    }
+
+    private void  TurnOnTheHollow(int playerIndex)
+    {
+        for (int i = 0; i < hollowes.Length; i++)
+        {
+            hollowes[i].gameObject.SetActive(false);
+        }
+
+        PutCardInPlace.ins.playerOneHollow.SetActive(false);
+
+        hollowes[playerIndex - 2].SetActive(true);
+
+    }
+
+    public void StopPlayings()
+    {
+        StopAllCoroutines();
+    }
+    //TODO:
 }

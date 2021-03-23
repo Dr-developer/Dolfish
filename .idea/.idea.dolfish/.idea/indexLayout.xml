@@ -11,7 +11,9 @@
       <Path>Library/PackageCache/com.unity.ide.rider@1.1.4</Path>
       <Path>Library/PackageCache/com.unity.ide.vscode@1.1.4</Path>
       <Path>Library/PackageCache/com.unity.mathematics@1.1.0</Path>
+      <Path>Library/PackageCache/com.unity.settings-manager@1.0.1</Path>
       <Path>Library/PackageCache/com.unity.test-framework@1.1.11</Path>
+      <Path>Library/PackageCache/com.unity.testtools.codecoverage@1.0.0</Path>
       <Path>Library/PackageCache/com.unity.textmeshpro@2.0.1</Path>
       <Path>Library/PackageCache/com.unity.timeline@1.2.10</Path>
       <Path>Packages</Path>
@@ -21,6 +23,7 @@
       <Path>.git</Path>
       <Path>.idea</Path>
       <Path>.vscode</Path>
+      <Path>CodeCoverage</Path>
       <Path>Library</Path>
       <Path>Logs</Path>
       <Path>Temp</Path>

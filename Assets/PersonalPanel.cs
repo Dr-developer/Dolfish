@@ -14,8 +14,10 @@ public class PersonalPanel : MonoBehaviour
     {
         if (GameService.IsAuthenticated())
         {
+            
             var user = await  GameService.GetCurrentPlayer();
-            playerName.text ="User Name: " +user.Name;
+            Debug.Log(user.Name);
+            playerName.text ="User Name: " +Fa.faConvertLine( user.Name);
             playerRank.text = "User Rand: 1";
         }
 

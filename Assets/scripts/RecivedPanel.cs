@@ -1,37 +1,42 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 public class RecivedPanel : MonoBehaviour
-{  
+{
     //TODO:Button Colors Button Fixing 
     //Public Variables
     public static RecivedPanel ins; //Create a Instans from this class
-    public string cardName;
-    public string cardCategory;
+    public const int PlayerOneIndex=1;
+    
     public Sprite cardBack;
-    public Sprite[] cardImages;//Image Of All Card Must Put In This Array So We Can Create Random Image Send To Players
-    public string[] cardImageCat;
-    public Text[] foodCardText=new Text[3];
-    public Text[] placeCardText=new Text[3];
-    public Text[] clothCardText=new Text[3];
-    public Text[] jobCardText  =new Text[3];
-    public Text[] moneyText    =new Text[3];
+    public Sprite[] cardImages; //Image Of All Card Must Put In This Array So We Can Create Random Image Send To Players
+    public Text[] foodCardText = new Text[3];
+    public Text[] placeCardText = new Text[3];
+    public Text[] clothCardText = new Text[3];
+    public Text[] jobCardText = new Text[3];
+    public Text[] moneyText = new Text[3];
     public GameObject cardReceiverPanel;
     public Button[] playerButtons;
-    public Button[] cardCategoryButton;
+    public Toggle[] cardCategoryButton;
     public Image card;
     public Image[] cardCategoryImages;
     public GameObject[] playerHollow;
-    public GameObject hideThePanel;
-    public GameObject no ;
+    public GameObject passPanel;
+    public GameObject acceptsPanel;
+    public GameObject receiverPanel;
     //Private Variables 
     private int _imageIndex;
-    private bool _playerSaidLie;//Changed 
+    private bool _playerSaidLie; //Changed 
     private Image _cardTemp;
-
+    private int _lastPlayerIndex;
+    private int _playerIndex;
+    private string _cardName;
+    private string _cardCategory;
+    private string _senderCategory;
     
     // Start is called before the first frame update
     private void Awake()
@@ -39,32 +44,65 @@ public class RecivedPanel : MonoBehaviour
         ins = this;
     }
    //Initiate the Card Receiver Stution 
-    public void InitiateCardReceiver()
-    {  Debug.Log("call");
-        hideThePanel.SetActive(true);
-        PutCardInPlace.ins.passPanel.SetActive(false);
-        PutCardInPlace.ins.playerTimer.SetActive(false);
-        no.SetActive(true);
-        card.sprite = cardBack;
-        var random = Random.Range(0, 25);
-        _imageIndex = random;
-        cardName = cardImages[random].name;
-        cardCategory = cardImageCat[random];
-        for (int i = 0; i < cardCategoryButton.Length; i++)
+    public  void InitiateCardReceiver(int playerNumber,string category,string senderCategory, string cardName,bool bluff,int lastPlayerIndex)
+    {
+        
+        if (PutCardInPlace.ins.hidePanel.activeSelf)
         {
-            cardCategoryButton[i].interactable = false;
-        } 
+            _cardName = cardName;
+            _cardCategory = category;
+            _senderCategory = senderCategory;
+            _lastPlayerIndex = lastPlayerIndex;
+            _playerSaidLie = bluff;
+            _playerIndex = playerNumber;
+            card.sprite = cardBack;
+            MakeButtonWhite();
+            cardReceiverPanel.SetActive(true);
+            SelectButtons(senderCategory);
+            PlayerButtonDeActive();
+            GameManger.ins.DeActivePlayersPanel();
+            acceptsPanel.SetActive(true);
+            
+        }
+
+        //PutCardInPlace.ins.HideThePanel();
+    }
+
+    private void  PlayerButtonDeActive()
+    {
         for (int i = 0; i < playerButtons.Length; i++)
         {
-            playerButtons[i].interactable = false;
+            if (RandomCardGenrtor.Ins.playersNamesIndex.Contains(i + 2))
+            {
+                playerButtons[i].gameObject.SetActive(false);
+            }
         }
-        cardReceiverPanel.SetActive(true);
-        SelectButtons(); 
+    }
+    private void MakeButtonWhite()
+    {
+        for (var i = cardCategoryButton.Length - 1; i >= 0; i--)
+        {
+            cardCategoryButton[i].interactable = false;
+            cardCategoryButton[i].GetComponent<Image>().color=Color.white;
+        } 
+        for ( int i=0;i<playerButtons.Length;i++)
+        {
+            if (RandomCardGenrtor.Ins.GetPlayerNamesIndex().Contains(i) == false)
+            {
+                playerButtons[i].interactable = false;
+                playerButtons[i].GetComponent<Image>().color = Color.white;
+            }
+            else
+            {
+                playerButtons[i].gameObject.SetActive(false);
+            }
+        }
     }
     //Change The Color Of Button When Player Click On It
-    private void SelectButtons()
+    
+    //TODO:Use Toggler for this
+    private void SelectButtons(string cardCategory)
     {
-        Debug.Log(cardCategory);
         switch (cardCategory)
         {
             case "Food":
@@ -102,7 +140,7 @@ public class RecivedPanel : MonoBehaviour
     //Pass This Card To Other Players 
     public void PassToOtherPlayers()
     {
-        card.sprite = cardImages[_imageIndex];
+        card.sprite = FindImage();
         for (int i = 0; i <cardCategoryButton.Length; i++)
         {
             cardCategoryButton[i].interactable = true;
@@ -117,52 +155,69 @@ public class RecivedPanel : MonoBehaviour
         {
             cardCategoryImages[i].color = Color.white;
         }
-        no.SetActive(false);
+        acceptsPanel.SetActive(false);
+        passPanel.SetActive(true);
+       
         
     
     }
     //BeLive This Players Word 
-    public void  AcceptHisWord()
+    public async void  AcceptHisWord()
     {
-        if (_playerSaidLie)
-        { 
-         PutItInFrontOfYou();
-         card.sprite = cardImages[_imageIndex];
-        }
-        else
-        {   
-            RandomCardGenrtor.Ins.receivedCardCat = cardCategory;
-            RandomCardGenrtor.Ins.receivedCardName = cardName;
-            RandomCardGenrtor.Ins.PutItInFrontOfPlayer();
-            card.sprite = cardImages[_imageIndex];
-        }
-
-        Disable();
-    }
-    //Don't Belive this Player Word 
-    public void DontAcceptPlayerWord()
-    {
-        Disable();
-        var random = Random.Range(0, 2);
         if (_playerSaidLie)
         {
-            Debug.Log("lie");
-            RandomCardGenrtor.Ins.receivedCardCat = cardCategory;
-            RandomCardGenrtor.Ins.receivedCardName = cardName;
-            RandomCardGenrtor.Ins.PutItInFrontOfPlayer();
-            card.sprite = cardImages[_imageIndex];
-            
+            PutItInFrontOfYou(_cardCategory, _cardName);
+            card.sprite = FindImage();
+            await WaitTwoSecondAsync();
+            StartCoroutine(RandomCardGenrtor.Ins.NoneHumanPlaying(0));
+            PutCardInPlace.ins.HumanTurn();
+            Disable();
         }
         else
         {
-         PutItInFrontOfYou();
-         card.sprite = cardImages[_imageIndex];
+            card.sprite = FindImage();
+            await WaitTwoSecondAsync();
+            RandomCardGenrtor.Ins.PutItInFrontOfNoneHumanPlayer(_cardCategory, _cardName, _lastPlayerIndex);
+            StartCoroutine(RandomCardGenrtor.Ins.NoneHumanPlaying(_lastPlayerIndex));
+            Disable();
         }
-      
-
 
     }
-    public void PutItInFrontOfYou()
+    //Don't Believe this Player Word 
+    public async void DontAcceptPlayerWord()
+    {
+        if (_playerSaidLie)
+        {
+            card.sprite = FindImage();
+            await WaitTwoSecondAsync();
+            RandomCardGenrtor.Ins.PutItInFrontOfNoneHumanPlayer(_cardCategory, _cardName, _lastPlayerIndex);
+            StartCoroutine(RandomCardGenrtor.Ins.NoneHumanPlaying(_lastPlayerIndex));
+            Disable();
+        }
+        else
+        {
+            PutItInFrontOfYou(_cardCategory, _cardName);
+            card.sprite = FindImage();
+            await WaitTwoSecondAsync();
+            StartCoroutine(RandomCardGenrtor.Ins.NoneHumanPlaying(0));
+
+            PutCardInPlace.ins.HumanTurn();
+            Disable();
+        } 
+    }
+
+    private Sprite FindImage()
+    {
+        foreach (var image in cardImages)
+        {
+            if (image.name == _cardName)
+            {
+                return image;
+            }
+        }
+        return null;
+    }
+    public void PutItInFrontOfYou(string cardCategory, string cardName)
     {
         Debug.Log(cardCategory);
         switch (cardCategory)
@@ -198,7 +253,7 @@ public class RecivedPanel : MonoBehaviour
                 
         }
     }
-    private static void PutTheCardsInEmptyPlaces(Text[] arr, string text)
+    private   void PutTheCardsInEmptyPlaces(Text[] arr, string text)
     {
     
 
@@ -207,10 +262,7 @@ public class RecivedPanel : MonoBehaviour
             if (String.IsNullOrEmpty(arr[i].text))
             {
                 arr[i].text = text;
-                Debug.Log("plcae of card "+i+"name"+text);
                 GameOverChecker(arr);
-                GameManger.ins.PlayerTurner();
-                RandomCardGenrtor.Ins.PlayerTurns();
                 break;
             }
         }
@@ -226,65 +278,78 @@ public class RecivedPanel : MonoBehaviour
                 counter++;
                 if (counter == 3)
                 {
-                    Debug.Log("fiiled");
                     GameManger.ins.GameOver();
                 }
             }
-           
+               
         }
     }
-    private void Disable()
+    private async void Disable()
     {
-        if (GameManger.ins.playerTurn==0)
+         // PutCardInPlace.ins.hidePanel.SetActive(false);
+         //  PutCardInPlace.ins.passPanel.SetActive(false);
+         //PutCardInPlace.ins.playerTimer.SetActive(false);
+         //  PlayeTimer.ins.timeLeft = PlayeTimer.ins.maxTime;
+        foreach (var variable in cardCategoryImages)
         {
-            PutCardInPlace.ins.hidePanel.SetActive(false);
-            PutCardInPlace.ins.passPanel.SetActive(false);
-            //PutCardInPlace.ins.playerTimer.SetActive(false);
-            PlayeTimer.ins.timeLeft = PlayeTimer.ins.maxTime;
-
+            variable.color = Color.white;
         }
-
-        foreach (var VARIABLE in cardCategoryImages)
-        {
-            VARIABLE.color=Color.white;
-        }
-        cardReceiverPanel.SetActive(false);
         card.sprite = cardBack;
+        RandomCardGenrtor.Ins.StopPlayings();
+        GameManger.ins.StopPlaying();
+        cardReceiverPanel.SetActive(false);
 
     }
     public void SendToWitchPlayer(int playerNumber)
     {
-        if (playerNumber == 2)
+        _playerIndex = playerNumber;
+        if (playerNumber == 2) 
         {
+              
             playerHollow[0].SetActive(true);
             playerHollow[1].SetActive(false);
             playerHollow[2].SetActive(false);
-            GameManger.ins.playerTurn = 0;
-            GameManger.ins.PlayerTurner();
-        }
-        else if (playerNumber == 3)
+           
+        }else if (playerNumber == 3)
         {
-            playerHollow[0].SetActive(false);
-            playerHollow[1].SetActive(false);
-            playerHollow[2].SetActive(true);
-            GameManger.ins.playerTurn = 1;
-            GameManger.ins.PlayerTurner();
-        }
-        else if (playerNumber == 4)
-        {
+              
             playerHollow[0].SetActive(false);
             playerHollow[1].SetActive(true);
             playerHollow[2].SetActive(false);
-            GameManger.ins.playerTurn = 2;
-            GameManger.ins.PlayerTurner();
-
+            
         }
+        else if (playerNumber == 4) {
+              
+            playerHollow[0].SetActive(false);
+            playerHollow[1].SetActive(false);
+            playerHollow[2].SetActive(true);
+         
+        }
+
+
+    }
+    public void SendCategory(string category)
+    {
+        _senderCategory = category;
+    }
+
+    public void PassTheCard()
+    {
+        RandomCardGenrtor.Ins.playersNamesIndex.Add(1);
+        GameManger.ins.FindingThePlayingCharacter(_playerIndex,_cardCategory,_senderCategory,_cardName,PlayerOneIndex);
+        Disable();
+
     }
     
     private async Task WaitOneSecondAsync()
     {
-        await Task.Delay(TimeSpan.FromSeconds(3));
-        Debug.Log("Finished waiting.");
-    }   
+        var randomWaiting = Random.Range(3, 5);
+        await Task.Delay(TimeSpan.FromSeconds(randomWaiting));
+    }
 
+    private async Task WaitTwoSecondAsync()
+    {
+        await Task.Delay(TimeSpan.FromSeconds(2));
+    }
+//BUG:It's Have Bug 
 }

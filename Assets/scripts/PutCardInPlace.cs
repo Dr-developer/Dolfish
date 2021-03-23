@@ -7,53 +7,64 @@ using UnityEngine.UI;
 public class PutCardInPlace : MonoBehaviour
 {
     //TODO:When PlayerTimer Ends Card Go in Front Of Player
+    private const int PlayerOneIndex = 1;
     public static PutCardInPlace ins;
     public List<GameObject> cards;
     public GameObject selectedcard;
-     //list of food cards
+
+    //list of food cards
     [HideInInspector] public List<GameObject> foodCards;
+
     // list of cloth Card
-    [HideInInspector] public List<GameObject> clothCards ;
+    [HideInInspector] public List<GameObject> clothCards;
+
     //list of Money Card;
     [HideInInspector] public List<GameObject> moneyCard;
-    [HideInInspector] public List<GameObject> actionCard;//List Of Action Card
-    [HideInInspector] public List<GameObject> jobCards;//List of Job Cards
-    [HideInInspector] public List<GameObject> placeCards;//List Of Place Cards 
-    [SerializeField] public Button[] cardButton=new Button[5];
-    public string cat;//card Category
+    [HideInInspector] public List<GameObject> actionCard; //List Of Action Card
+    [HideInInspector] public List<GameObject> jobCards; //List of Job Cards
+    [HideInInspector] public List<GameObject> placeCards; //List Of Place Cards 
+    [SerializeField] public Button[] cardButton = new Button[5];
+    public string cat; //card Category
     public GameObject passPanel;
     public GameObject hidePanel;
-    public  PlayerAi[] _ai=new PlayerAi[3];
+    public PlayerAi[] _ai = new PlayerAi[3];
     public GameObject ClickedCard;
-    public Text[] actionCardText=new Text[3];
-    public Text[] foodCardText=new Text[3];
-    public Text[] placeCardText=new Text[3];
-    public Text[] clothCardText=new Text[3];
-    public Text[] jobCardText  =new Text[3];
-    public Text[] moneyText    =new Text[3];
+    public Text[] actionCardText = new Text[3];
+    public Text[] foodCardText = new Text[3];
+    public Text[] placeCardText = new Text[3];
+    public Text[] clothCardText = new Text[3];
+    public Text[] jobCardText = new Text[3];
+    public Text[] moneyText = new Text[3];
     public string recivedCardCat;
-    public string recivedCat;
     public string revicidCardName;
+    private string _senderCategory;
     public bool sendCardActionPanelWork;
     public Image cardImage;
     public Button[] cardCategoryButtons;
     public GameObject[] playerHollow;
+    public GameObject[] playerOneCardsLights;
+    private int _numberOfCardsOfPlayer;
     public GameObject playerTimer;
-    public string[] foodCardNames=new string[6];
-    public string[] placeCardNames=new string[6];
-    public string[] clothCardName=new string[6];
-    public string[] jobCardName=new string[6];
-    public string[] moneyCardName=new string[6];
+    public string[] foodCardNames = new string[6];
+    public string[] placeCardNames = new string[6];
+    public string[] clothCardName = new string[6];
+    public string[] jobCardName = new string[6];
+    public string[] moneyCardName = new string[6];
+    public string cardName;
+    public GameObject playerOneHollow;
+    public int playerIndex;
     
     public void Awake()
     {
         ins = this; //Creat instance From this Class 
     }
 
-     public  void Start()
+    public void Start()
     {
-        cards = GameSaveSysteam.Ins.usedCart; 
-        for (int i = 1; i < cards.Count; i++)//Divide card to Card list 
+        cards = GameSaveSysteam.Ins.usedCart;
+        _numberOfCardsOfPlayer = 8;
+        Debug.Log(_numberOfCardsOfPlayer);
+        for (var i = 1; i < cards.Count; i++) //Divide card to Card list 
         {
             if (cards[i].GetComponent<category>().cat.Name == "ActionCards")
             {
@@ -72,332 +83,288 @@ public class PutCardInPlace : MonoBehaviour
             else if (cards[i].GetComponent<category>().cat.Name == "Job")
             {
                 jobCards.Add(cards[i]);
-             jobCardName[i] = cards[i].name;
-
-            } 
+                jobCardName[i] = cards[i].name;
+            }
             else if (cards[i].GetComponent<category>().cat.Name == "Money")
             {
                 moneyCard.Add(cards[i]);
                 moneyCardName[i] = cards[i].name;
-
             }
             else if (cards[i].GetComponent<category>().cat.Name == "Place")
             {
-                placeCards.Add(cards[i]);   
+                placeCards.Add(cards[i]);
                 placeCardNames[i] = cards[i].name;
-
-            } 
+            }
             else if (cards[i].GetComponent<category>().cat.Name == "ActionCards")
             {
-                actionCard.Add(cards[i]); 
+                actionCard.Add(cards[i]);
             }
+
             RandomCardGenrtor.Ins.CallToRemoveSameCard();
-
         }
     }
 
-    public void OnActionButtonClick()//when you click on action button
-    {            makeCardtransparent();
+    public int GetNumberOfCardsOfPlayer()
+    {
+        return _numberOfCardsOfPlayer;
+    }
+
+    public void OnActionButtonClick() //when you click on action button
+    {
+        MakeCardtransparent();
         passThecard.Pass.cat = "ActionCards";
-        for (int i = 0; i < actionCard.Count; i++)
+        for (var i = 0; i < actionCard.Count; i++)
         {
-        
             cardButton[i].GetComponent<Image>().sprite = actionCard[i].GetComponent<SpriteRenderer>().sprite;
-            cardButton[i].GetComponent<Image>().color=new Color(cardButton[i].GetComponent<Image>().color.r,cardButton[i].GetComponent<Image>().color.g,cardButton[i].GetComponent<Image>().color.b,256f);
+            cardButton[i].GetComponent<Image>().color = new Color(cardButton[i].GetComponent<Image>().color.r,
+                cardButton[i].GetComponent<Image>().color.g, cardButton[i].GetComponent<Image>().color.b, 256f);
         }
     }
-    public void OnFoodButtonClick()//when you click on Food Card 
-    {            makeCardtransparent();
+
+    public void OnFoodButtonClick() //when you click on Food Card 
+    {
+        MakeCardtransparent();
         cat = "Food";
-        for (int i = 0; i < foodCards.Count; i++)
+        for (var i = 0; i < foodCards.Count; i++)
         {
-          
             cardButton[i].GetComponent<Image>().sprite = foodCards[i].GetComponent<SpriteRenderer>().sprite;
-            cardButton[i].GetComponent<Image>().color=new Color(cardButton[i].GetComponent<Image>().color.r,cardButton[i].GetComponent<Image>().color.g,cardButton[i].GetComponent<Image>().color.b,256f);
-
+            cardButton[i].GetComponent<Image>().color = new Color(cardButton[i].GetComponent<Image>().color.r,
+                cardButton[i].GetComponent<Image>().color.g, cardButton[i].GetComponent<Image>().color.b, 256f);
         }
     }
+
     public void OnMoneyButtonClick()
-    {            makeCardtransparent();
+    {
+        MakeCardtransparent();
         cat = "Money";
-        for (int i = 0; i < moneyCard.Count; i++)
+        for (var i = 0; i < moneyCard.Count; i++)
         {
-          
-
             cardButton[i].GetComponent<Image>().sprite = moneyCard[i].GetComponent<SpriteRenderer>().sprite;
-            cardButton[i].GetComponent<Image>().color=new Color(cardButton[i].GetComponent<Image>().color.r,cardButton[i].GetComponent<Image>().color.g,cardButton[i].GetComponent<Image>().color.b,256f);
-
+            cardButton[i].GetComponent<Image>().color = new Color(cardButton[i].GetComponent<Image>().color.r,
+                cardButton[i].GetComponent<Image>().color.g, cardButton[i].GetComponent<Image>().color.b, 256f);
         }
     }
+
     public void OnJobButtonClick()
-    {            makeCardtransparent();
+    {
+        MakeCardtransparent();
         cat = "Job";
-        for (int i = 0; i < jobCards.Count; i++)
-        {        
-
-            cardButton[i].GetComponent<Image>().sprite = jobCards[i].GetComponent<SpriteRenderer>().sprite;
-            cardButton[i].GetComponent<Image>().color=new Color(cardButton[i].GetComponent<Image>().color.r,cardButton[i].GetComponent<Image>().color.g,cardButton[i].GetComponent<Image>().color.b,256f);
-
-        }
-    }
-    public void OnPlaceButtonClick()
-    {            makeCardtransparent();
-        cat = "Place";
-
-        for (int i = 0; i < placeCards.Count; i++)
-        {    
-
-            cardButton[i].GetComponent<Image>().sprite = placeCards[i].GetComponent<SpriteRenderer>().sprite;
-            
-            cardButton[i].GetComponent<Image>().color=new Color(cardButton[i].GetComponent<Image>().color.r,cardButton[i].GetComponent<Image>().color.g,cardButton[i].GetComponent<Image>().color.b,256f);
-
-        }
-    }
-    public void OnClothCardButtonClick()
-    {            makeCardtransparent();
-        cat = "Clothe";
-
-        for (int i = 0; i < clothCards.Count; i++)
-        {    
-                
-            cardButton[i].GetComponent<Image>().sprite = clothCards[i].GetComponent<SpriteRenderer>().sprite;
-            cardButton[i].GetComponent<Image>().color=new Color(cardButton[i].GetComponent<Image>().color.r,cardButton[i].GetComponent<Image>().color.g,cardButton[i].GetComponent<Image>().color.b,256f);
-
-        }
-    }
-
-    public void makeCardtransparent()
-    {
-        for (int i = 0; i < cardButton.Length; i++)
+        for (var i = 0; i < jobCards.Count; i++)
         {
-            cardButton[i].GetComponent<Image>().color=new Color(cardButton[i].GetComponent<Image>().color.r,cardButton[i].GetComponent<Image>().color.g,cardButton[i].GetComponent<Image>().color.b,0);
-
+            cardButton[i].GetComponent<Image>().sprite = jobCards[i].GetComponent<SpriteRenderer>().sprite;
+            cardButton[i].GetComponent<Image>().color = new Color(cardButton[i].GetComponent<Image>().color.r,
+                cardButton[i].GetComponent<Image>().color.g, cardButton[i].GetComponent<Image>().color.b, 256f);
         }
-
-
     }
 
-    public void DeleteTheCard(Image cardImage ,string catName)
+    public void OnPlaceButtonClick()
     {
- 
+        MakeCardtransparent();
+        cat = "Place";
+        for (var i = 0; i < placeCards.Count; i++)
+        {
+            cardButton[i].GetComponent<Image>().sprite = placeCards[i].GetComponent<SpriteRenderer>().sprite;
+            cardButton[i].GetComponent<Image>().color = new Color(cardButton[i].GetComponent<Image>().color.r,
+                cardButton[i].GetComponent<Image>().color.g, cardButton[i].GetComponent<Image>().color.b, 256f);
+        }
+    }
+
+    public void OnClothCardButtonClick()
+    {
+        MakeCardtransparent();
+        cat = "Clothe";
+        for (var i = 0; i < clothCards.Count; i++)
+        {
+            cardButton[i].GetComponent<Image>().sprite = clothCards[i].GetComponent<SpriteRenderer>().sprite;
+            cardButton[i].GetComponent<Image>().color = new Color(cardButton[i].GetComponent<Image>().color.r,
+                cardButton[i].GetComponent<Image>().color.g, cardButton[i].GetComponent<Image>().color.b, 256f);
+        }
+    }
+
+    public void MakeCardtransparent()
+    {
+        for (var i = 0; i < cardButton.Length; i++)
+            cardButton[i].GetComponent<Image>().color = new Color(cardButton[i].GetComponent<Image>().color.r,
+                cardButton[i].GetComponent<Image>().color.g, cardButton[i].GetComponent<Image>().color.b, 0);
+    }
+
+    public void DeleteTheCard(Image cardImage, string catName)
+    {
         switch (catName)
         {
-            case  "ActionCards":
-                for (int i = 0; i < actionCard.Count; i++)
-                {
-                    if (actionCard[i].GetComponent<SpriteRenderer>().sprite.name==cardImage.sprite.name)
+            case "ActionCards":
+                for (var i = 0; i < actionCard.Count; i++)
+                    if (actionCard[i].GetComponent<SpriteRenderer>().sprite.name == cardImage.sprite.name)
                     {
                         selectedcard = actionCard[i];
                         actionCard.Remove(actionCard[i]);
                     }
-                }
+
                 break;
-            
             case "Clothe":
-                for (int i = 0; i < clothCards.Count; i++)
-                {
-                    if (clothCards[i].GetComponent<SpriteRenderer>().sprite.name==cardImage.sprite.name)
+                for (var i = 0; i < clothCards.Count; i++)
+                    if (clothCards[i].GetComponent<SpriteRenderer>().sprite.name == cardImage.sprite.name)
                     {
                         selectedcard = clothCards[i];
                         clothCards.Remove(clothCards[i]);
                     }
-                }
+
                 break;
-            
             case "Food":
-                for (int i = 0; i < foodCards.Count; i++)
-                {
-                    if (foodCards[i].GetComponent<SpriteRenderer>().sprite.name==cardImage.sprite.name)
+                for (var i = 0; i < foodCards.Count; i++)
+                    if (foodCards[i].GetComponent<SpriteRenderer>().sprite.name == cardImage.sprite.name)
                     {
                         selectedcard = foodCards[i];
                         foodCards.Remove(foodCards[i]);
                     }
-                }
+
                 break;
-            
             case "Job":
-                for (int i = 0; i < jobCards.Count; i++)
-                {
-                    if (jobCards[i].GetComponent<SpriteRenderer>().sprite.name==cardImage.sprite.name)
+                for (var i = 0; i < jobCards.Count; i++)
+                    if (jobCards[i].GetComponent<SpriteRenderer>().sprite.name == cardImage.sprite.name)
                     {
                         selectedcard = jobCards[i];
                         jobCards.Remove(jobCards[i]);
                     }
-                }
+
                 break;
-            
             case "Place":
-                for (int i = 0; i <placeCards.Count; i++)
-                {
-                    if (placeCards[i].GetComponent<SpriteRenderer>().sprite.name==cardImage.sprite.name)
+                for (var i = 0; i < placeCards.Count; i++)
+                    if (placeCards[i].GetComponent<SpriteRenderer>().sprite.name == cardImage.sprite.name)
                     {
                         selectedcard = placeCards[i];
                         placeCards.Remove(placeCards[i]);
                     }
-                        
-                }break;
-            
+
+                break;
             case "Money":
-                for (int i = 0; i < moneyCard.Count; i++)
-                {
-                    if (moneyCard[i].GetComponent<SpriteRenderer>().sprite.name==cardImage.sprite.name)
+                for (var i = 0; i < moneyCard.Count; i++)
+                    if (moneyCard[i].GetComponent<SpriteRenderer>().sprite.name == cardImage.sprite.name)
                     {
                         selectedcard = moneyCard[i];
                         moneyCard.Remove(moneyCard[i]);
                     }
-                }
+
                 break;
-            
             default:
                 Debug.LogError("UnValid Card Category");
                 break;
-                
-            
         }
-        Gameover();
+
+        GameOver();
     }
 
-    public void Delete(Image card)//Delect the card from category list 
+    public void Delete(Image card) //Delect the card from category list 
     {
-        
-        for (int i = 0; i < cards.Count; i++)
-        {
-         
-            if (card.sprite== cards[i].GetComponent<SpriteRenderer>().sprite)
+        for (var i = 0; i < cards.Count; i++)
+            if (card.sprite == cards[i].GetComponent<SpriteRenderer>().sprite)
             {
                 Debug.Log("Deleted ");
                 cards.Remove(cards[i]);
             }
-        }
+
         cards.Remove(selectedcard);
     }
-    public void ActiveThePassPanel()//active the pass Panel
-    { 
-       
+
+    public void ActiveThePassPanel() //active the pass Panel
+    {
         ClickedCard = EventSystem.current.currentSelectedGameObject;
         cardImage.sprite = ClickedCard.GetComponent<Image>().sprite;
+        cardName = ClickedCard.GetComponent<Image>().sprite.name;
         passPanel.SetActive(true);
         sendCardActionPanelWork = true;
         hidePanel.SetActive(true);
         SelectButtons();
-
     }
 
     public void SelectButtons()
     {
-        if (cat == "Food")
-        {
-            cardCategoryButtons[0].Select();
-            
-        }else if (cat == "Money")
-        {
-            cardCategoryButtons[1].Select();
-        }
-        else if (cat == "Job")
-        {
-            cardCategoryButtons[2].Select();
-        }
-        else if (cat == "Place")
-        {
-            cardCategoryButtons[3].Select();    
-        }
-        else if (cat == "Clothe")
-        {
-            cardCategoryButtons[4].Select();
-        }
+        if (cat == "Food") cardCategoryButtons[0].Select();
+        else if (cat == "Money") cardCategoryButtons[1].Select();
+        else if (cat == "Job") cardCategoryButtons[2].Select();
+        else if (cat == "Place") cardCategoryButtons[3].Select();
+        else if (cat == "Clothe") cardCategoryButtons[4].Select();
     }
 
-    public void PassTheCardToWho(bool timer=false)
+    public void PassTheCardToWho(bool timer = false)
     {
-        RandomCardGenrtor.Ins.receivedCardName= ClickedCard.GetComponent<Image>().sprite.name;
-        RandomCardGenrtor.Ins.receivedCardCat = cat;
         passPanel.SetActive(false);
-        DeleteTheCard(ClickedCard.GetComponent<Image>(),cat);
+        DeleteTheCard(ClickedCard.GetComponent<Image>(), cat);
         ClickedCard.GetComponent<Image>().sprite = null;
         sendCardActionPanelWork = false;
-        playerHollow[0].SetActive(false);
-        playerHollow[1].SetActive(false);
-        playerHollow[2].SetActive(false);
         playerTimer.SetActive(false);
         if (ClickedCard.GetComponent<Image>().name != "dolphin")
         {
-            RandomCardGenrtor.Ins.PutItInFrontOfPlayer();
-            Debug.Log("not dol");
+            //TODO:Thing For a Solution For Dol 
+            RandomCardGenrtor.Ins.playersNamesIndex.Add(PlayerOneIndex);
+            GameManger.ins.FindingThePlayingCharacter(playerIndex, cat, _senderCategory, cardName, PlayerOneIndex);
         }
         else if (ClickedCard.GetComponent<Image>().name == "dolphin")
         {
-            RandomCardGenrtor.Ins.PutItInFrontOfPlayer(true);
+            //TODO:Thing For a Solution For Dol
+            // RandomCardGenrtor.Ins.PutItInFrontOfPlayer(true);
             Debug.Log("Dol");
         }
-        else if (timer )
+        else if (timer)
         {
-            RandomCardGenrtor.Ins.PutItInFrontOfPlayer(false,true);
-            Debug.Log("normal");
+            // RandomCardGenrtor.Ins.PutItInFrontOfPlayer(false,true);
+            //  Debug.Log("normal");
         }
-       // GameManger.ins.PlayerTurner();
+
+        _numberOfCardsOfPlayer--;
+        TurnOfPlayerCardsLights();
+        // GameManger.ins.PlayerTurner();
     }
 
- 
-    public void PutItInFrontOFPlayer()
+    private void TurnOfPlayerCardsLights()
+    {
+        for (int i = _numberOfCardsOfPlayer; i <= playerOneCardsLights.Length; i++)
+        {
+            playerOneCardsLights[i].SetActive(false);
+        }
+    }
+
+    public void PutItInFrontOfPlayer()
     {
         switch (recivedCardCat)
         {
-            case  "ActionCards":
-                putTheCardsInEmpetyPlacese(actionCardText,revicidCardName);
+            case "ActionCards":
+                PutTheCardsInEmpetyPlacese(actionCardText, revicidCardName);
                 break;
-            
             case "Clothe":
-                putTheCardsInEmpetyPlacese(clothCardText,revicidCardName);
-
+                PutTheCardsInEmpetyPlacese(clothCardText, revicidCardName);
                 break;
-            
             case "Food":
-                putTheCardsInEmpetyPlacese(foodCardText,revicidCardName);
-
+                PutTheCardsInEmpetyPlacese(foodCardText, revicidCardName);
                 break;
-            
             case "Job":
-                putTheCardsInEmpetyPlacese(jobCardText,revicidCardName);
-
+                PutTheCardsInEmpetyPlacese(jobCardText, revicidCardName);
                 break;
-            
             case "Place":
-                putTheCardsInEmpetyPlacese(placeCardText,recivedCardCat);
+                PutTheCardsInEmpetyPlacese(placeCardText, recivedCardCat);
                 break;
-            
             case "Money":
-                putTheCardsInEmpetyPlacese(moneyText,revicidCardName);
-
+                PutTheCardsInEmpetyPlacese(moneyText, revicidCardName);
                 break;
-            
             default:
                 Debug.LogError("UnValid Card Category");
                 break;
-                
         }
     }
 
-    public void putTheCardsInEmpetyPlacese(Text[] arry, string text)
+    private void PutTheCardsInEmpetyPlacese(Text[] arry, string text)
     {
-    
-
-        for (int i = 0; i < arry.Length; i++)
-        {
+        for (var i = 0; i < arry.Length; i++)
             if (arry[i] == null)
-            {
                 arry[i].text = text;
-            }
-        }
-        
     }
-   
-    public void RemoveThePanel()
+
+    public void HumanTurn()
     {
-       
         hidePanel.SetActive(false);
         playerTimer.SetActive(true);
         PlayeTimer.ins.timeLeft = PlayeTimer.ins.maxTime;
-       
+        playerOneHollow.gameObject.SetActive(true);
     }
 
     public void HideThePanel()
@@ -405,69 +372,64 @@ public class PutCardInPlace : MonoBehaviour
         hidePanel.SetActive(true);
         passPanel.SetActive(false);
         playerTimer.SetActive(false);
-
-
     }
 
-    public void Gameover()
+    private void GameOver()
     {
-        if ((clothCards != null) && (!clothCards.Any()))
+        if (_numberOfCardsOfPlayer==0)
         {
-            if ((foodCards != null) && (!foodCards.Any()))
-            {
-                if ((placeCards != null) && (!placeCards.Any()))
-                {
-                    if ((jobCards != null) && (!jobCards.Any()))
-                    {
-                        if ((moneyCard != null) && (!moneyCard.Any()))
+            GameManger.ins.GameOver();
+
+        }
+        if (clothCards != null && !clothCards.Any())
+            if (foodCards != null && !foodCards.Any())
+                if (placeCards != null && !placeCards.Any())
+                    if (jobCards != null && !jobCards.Any())
+                        if (moneyCard != null && !moneyCard.Any())
                         {
                             Debug.Log("GameOver");
                             GameManger.ins.GameOver();
                         }
-                    }
-                }
-            }
-        }
     }
 
-    public void SendToWitchPlayer(int playernumber)
+    public void SendCategory(string category)
     {
-        if (playernumber == 2)
+        _senderCategory = category;
+    }
+
+    private string GetSendCategory(string category)
+    {
+        return category;
+    }
+
+    public void SendToWitchPlayer(int playerNumber)
+    {
+        playerIndex = playerNumber;
+        if (playerNumber == 2)
         {
             playerHollow[0].SetActive(true);
             playerHollow[1].SetActive(false);
             playerHollow[2].SetActive(false);
-            GameManger.ins.playerTurn = 0;
-            GameManger.ins.PlayerTurner();
         }
-        else if (playernumber == 3)
+        else if (playerNumber == 3)
         {
             playerHollow[0].SetActive(false);
             playerHollow[1].SetActive(true);
             playerHollow[2].SetActive(false);
-            GameManger.ins.playerTurn = 1;
-            GameManger.ins.PlayerTurner();
         }
-        else if (playernumber == 4)
+        else if (playerNumber == 4)
         {
             playerHollow[0].SetActive(false);
             playerHollow[1].SetActive(false);
             playerHollow[2].SetActive(true);
-            GameManger.ins.playerTurn = 1;
-            GameManger.ins.PlayerTurner();
-
         }
     }
 
     public void DeActiveThePanel()
     {
-        playerHollow[0].SetActive(false);
-        playerHollow[1].SetActive(false);
-        playerHollow[2].SetActive(false);
-        GameManger.ins.playerTurn = 3;
-        GameManger.ins.PlayerTurner();
+        //  GameManger.ins.PlayerTurner();
         passPanel.SetActive(false);
         hidePanel.SetActive(false);
     }
-
+    
 }

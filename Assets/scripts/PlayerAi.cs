@@ -59,7 +59,7 @@ public class PlayerAi : MonoBehaviour
         if (sendCat != recivedCardCat)
         {   Debug.Log("put the card in front of player");
             GameManger.ins.GetLastPlayer().GetComponent<PutCardInPlace>().recivedCardCat = recivedCardCat;
-            GameManger.ins.GetLastPlayer().GetComponent<PutCardInPlace>().PutItInFrontOFPlayer();
+            GameManger.ins.GetLastPlayer().GetComponent<PutCardInPlace>().PutItInFrontOfPlayer();
          
         }
         else

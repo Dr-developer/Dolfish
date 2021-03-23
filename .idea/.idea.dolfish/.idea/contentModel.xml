@@ -166,6 +166,7 @@
         <e p="Editor" t="Include">
           <e p="CreateAssetBundles.cs" t="Include" />
         </e>
+        <e p="Fa(2).cs" t="Include" />
         <e p="GsLiveHandler.cs" t="Include" />
         <e p="MultiPlayer.cs" t="Include" />
         <e p="MultiPlayerData.cs" t="Include" />
@@ -385,6 +386,53 @@
             </e>
           </e>
         </e>
+        <e p="Samples" t="Include">
+          <e p="Code Coverage" t="Include">
+            <e p="1.0.0" t="Include">
+              <e p="Code Coverage Tutorial" t="Include">
+                <e p="Asteroids" t="Include">
+                  <e p="Scripts" t="Include">
+                    <e p="Animation" t="Include">
+                      <e p="AnimatorDisabler.cs" t="Include" />
+                    </e>
+                    <e p="Controllers" t="Include">
+                      <e p="AsteroidController.cs" t="Include" />
+                      <e p="DebrisController.cs" t="Include" />
+                      <e p="SpaceshipController.cs" t="Include" />
+                    </e>
+                    <e p="FX" t="Include">
+                      <e p="EngineTrail.cs" t="Include" />
+                    </e>
+                    <e p="Managers" t="Include">
+                      <e p="GameManager.cs" t="Include" />
+                    </e>
+                    <e p="UI" t="Include">
+                      <e p="InGameMenuController.cs" t="Include" />
+                      <e p="LifeCounter.cs" t="Include" />
+                      <e p="ScoreCounter.cs" t="Include" />
+                    </e>
+                    <e p="Weapons" t="Include">
+                      <e p="BaseProjectile.cs" t="Include" />
+                      <e p="LaserController.cs" t="Include" />
+                      <e p="ProjectileController.cs" t="Include" />
+                      <e p="WeaponList.cs" t="Include" />
+                    </e>
+                  </e>
+                  <e p="Tests" t="Include">
+                    <e p="AsteroidTests.cs" t="Include" />
+                    <e p="CameraTests.cs" t="Include" />
+                    <e p="FXTests.cs" t="Include" />
+                    <e p="GameManagerTests.cs" t="Include" />
+                    <e p="SpaceshipTests.cs" t="Include" />
+                    <e p="TestsReferences.cs" t="Include" />
+                    <e p="UserInterfaceTests.cs" t="Include" />
+                    <e p="WeaponTests.cs" t="Include" />
+                  </e>
+                </e>
+              </e>
+            </e>
+          </e>
+        </e>
         <e p="Save.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="cardCreator.cs" t="Include" />
@@ -502,6 +550,8 @@
       <e p="obj" t="ExcludeRecursive" />
       <e p="Packages" t="ExcludeRecursive" />
       <e p="Temp\bin" t="ExcludeRecursive" />
+      <e p="Unity.TestTools.CodeCoverage.Sample.Asteroids.csproj" t="IncludeRecursive" />
+      <e p="Unity.TestTools.CodeCoverage.Sample.Asteroids.Tests.csproj" t="IncludeRecursive" />
     </e>
   </component>
 </project>

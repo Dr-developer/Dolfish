@@ -50,6 +50,8 @@ public class MenuController : MonoBehaviour
         {
             Debug.LogError(e.Message);
             error.text = e.Message;
+            panel.SetActive(true);
+            waiting.gameObject.SetActive(false);
         }
     }
 

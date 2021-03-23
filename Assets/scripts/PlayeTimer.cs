@@ -9,7 +9,7 @@ public class PlayeTimer : MonoBehaviour
 {
     public static PlayeTimer ins;
     public Image Timebar;
-    public float maxTime = 20f;
+    public float maxTime = 15f;
     public float reminedTime;
     public float timeLeft;
     public bool stopTheTimer;
@@ -43,22 +43,26 @@ public class PlayeTimer : MonoBehaviour
         }
     }
 
-    public void TimeEnded()
+    private void TimeEnded()
     {
-         if(timeLeft<0 && stopTheTimer==false&&PutCardInPlace.ins.passPanel.activeSelf==false) 
+         if(timeLeft<0) 
          {
-            GameManger.ins.PlayerTurner();
-            RandomCardGenrtor.Ins.PlayerTurns();
-            PutCardInPlace.ins.HideThePanel();
-            stopTheTimer = true;
-            gameObject.SetActive(false);
-         }
-         else if (timeLeft<0 && stopTheTimer==false&& PutCardInPlace.ins.passPanel.activeSelf)
-         {
-            
-            PutCardInPlace.ins.PassTheCardToWho(true);   
-            gameObject.SetActive(false);
+            //GameManger.ins.PlayerTurner();
+            if (GameManger.ins.listOfGameOverPlayers.Contains(0) == false)
+            {
+                StartCoroutine(RandomCardGenrtor.Ins.NoneHumanPlaying(2));
+            }
+            else if (GameManger.ins.listOfGameOverPlayers.Contains(1) == false)
+            {
+                StartCoroutine(RandomCardGenrtor.Ins.NoneHumanPlaying(3));
 
+            }
+
+            
+            stopTheTimer = true;
+            PutCardInPlace.ins.HideThePanel();
+            //gameObject.SetActive(false);
          }
+       
     }
 }
