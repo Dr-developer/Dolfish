@@ -20,6 +20,7 @@ public class MenuController : MonoBehaviour
     public Text error;
     public Text waiting;
     public GameObject panel;
+    
     async void Start()
     {
         try

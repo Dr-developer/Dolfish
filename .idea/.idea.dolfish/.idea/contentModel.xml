@@ -129,13 +129,10 @@
             </e>
           </e>
         </e>
-        <e p="AutoMatchMaking.cs" t="Include" />
         <e p="cards" t="Include">
           <e p="Cat_so.cs" t="Include" />
         </e>
-        <e p="CardSavePanel.cs" t="Include" />
         <e p="ConsolePro" t="Include">
-          <e p="ConsoleProDebug.cs" t="Include" />
           <e p="Remote" t="Include">
             <e p="ConsoleProRemoteServer.cs" t="Include" />
             <e p="LiteNetLib" t="Include">
@@ -166,11 +163,6 @@
         <e p="Editor" t="Include">
           <e p="CreateAssetBundles.cs" t="Include" />
         </e>
-        <e p="Fa(2).cs" t="Include" />
-        <e p="GsLiveHandler.cs" t="Include" />
-        <e p="MultiPlayer.cs" t="Include" />
-        <e p="MultiPlayerData.cs" t="Include" />
-        <e p="PersonalPanel.cs" t="Include" />
         <e p="Plugins" t="Include">
           <e p="Android" t="Include">
             <e p="AndroidManifest.xml" t="Include" />
@@ -433,13 +425,15 @@
             </e>
           </e>
         </e>
-        <e p="Save.cs" t="Include" />
         <e p="Scripts" t="Include">
+          <e p="AutoMatchMaking.cs" t="Include" />
           <e p="cardCreator.cs" t="Include" />
+          <e p="CardSavePanel.cs" t="Include" />
           <e p="CardSaveSysteam.cs" t="Include" />
           <e p="category.cs" t="Include" />
           <e p="ChangingPages.cs" t="Include" />
           <e p="CheckSavedCards.cs" t="Include" />
+          <e p="ConsoleProDebug.cs" t="Include" />
           <e p="contactUsPanel.cs" t="Include" />
           <e p="Controller" t="Include">
             <e p="CharacterMovement.cs" t="Include" />
@@ -449,21 +443,27 @@
           <e p="count_down.cs" t="Include" />
           <e p="CreateRandomTextCat.cs" t="Include" />
           <e p="DivideTheAiCards.cs" t="Include" />
+          <e p="Fa(2).cs" t="Include" />
           <e p="GameController.cs" t="Include" />
           <e p="GameManger.cs" t="Include" />
           <e p="GameSaveSysteam.cs" t="Include" />
           <e p="GameSaveSystem.cs" t="Include" />
           <e p="GameSession.cs" t="Include" />
+          <e p="GsLiveHandler.cs" t="Include" />
           <e p="MenuController.cs" t="Include" />
+          <e p="MultiPlayer.cs" t="Include" />
+          <e p="MultiPlayerData.cs" t="Include" />
           <e p="Musicplayer.cs" t="Include" />
           <e p="passThecard.cs" t="Include" />
           <e p="persist_state.cs" t="Include" />
+          <e p="PersonalPanel.cs" t="Include" />
           <e p="Player.cs" t="Include" />
           <e p="PlayerAi.cs" t="Include" />
           <e p="PlayeTimer.cs" t="Include" />
           <e p="PutCardInPlace.cs" t="Include" />
           <e p="RandomCardGenrtor.cs" t="Include" />
           <e p="RecivedPanel.cs" t="Include" />
+          <e p="Save.cs" t="Include" />
           <e p="sort" t="Include">
             <e p="ArrengeCats.cs" t="Include" />
             <e p="CardMaker.cs" t="Include" />
